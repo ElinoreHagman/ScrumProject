@@ -1,0 +1,18 @@
+﻿@using ScrumProject.Models
+@model ProfileIndexViewModel
+
+<table>
+    @foreach (var profile in Model.Profiles)
+    {
+    <tr>
+        <td>@profile.ProfileID</td>
+        <td>@profile.Forename</td>
+        <td>@profile.Surname</td>
+        <td>@profile.Phonenumber</td>
+        <td>@profile.AdminRights</td>
+    </tr>
+    }
+</table>
+<hr />
+
+@Html.Partial("AddProfileForm", new Profile())
