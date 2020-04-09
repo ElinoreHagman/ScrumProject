@@ -13,7 +13,7 @@ namespace ScrumProject.Models
 
         public string Forename { get; set; }
         public string Surname { get; set; }
-        public int Phonenumber { get; set; }
+        public string Phonenumber { get; set; }
         public bool AdminRights { get; set; }
     }
 }

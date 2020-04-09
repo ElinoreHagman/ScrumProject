@@ -13,7 +13,7 @@ namespace ScrumProject.Controllers
         // GET: User
         public ActionResult Index()
         {
-            var ctx = new ProfileDbContext();
+            var ctx = new BlogDbContext();
             var viewModel = new ProfileIndexViewModel
             {
                 Profiles = ctx.Profiles.ToList()
@@ -23,7 +23,7 @@ namespace ScrumProject.Controllers
 
         public ActionResult AddProfile(Profile model)
         {
-            var ctx = new ProfileDbContext();
+            var ctx = new BlogDbContext();
             ctx.Profiles.Add(model);
             ctx.SaveChanges();
 

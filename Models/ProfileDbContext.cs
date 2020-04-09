@@ -6,10 +6,10 @@ using System.Web;
 
 namespace ScrumProject.Models
 {
-    public class ProfileDbContext : DbContext
+    public class BlogDbContext : DbContext
     {
         public DbSet<Profile> Profiles { get; set; }
 
-        public ProfileDbContext() : base("ProfileDb") { }
+        public BlogDbContext() : base("BlogDb") { }
     }
 }
