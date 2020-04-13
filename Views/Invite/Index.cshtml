@@ -1,0 +1,14 @@
+﻿@using ScrumProject.Models
+@model InviteIndexViewModel
+<table>
+    @foreach (var invite in Model.Invites)
+    {
+    <tr>
+        <td>@invite.InviteID</td>
+        <td>@invite.AskerID</td>
+        <td>@invite.GetterID</td>
+        <td>@invite.MeetingID</td>
+    </tr>
+    }
+</table>
+<hr />
