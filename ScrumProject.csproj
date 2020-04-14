@@ -186,6 +186,7 @@
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\MeetingDateOptions.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\ProfileIndexViewModel.cs" />
     <Compile Include="Models\User.cs" />
@@ -251,6 +252,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\AddProfileForm.cshtml" />
     <Content Include="Views\Invite\Index.cshtml" />
+    <Content Include="Views\Post\CreatePost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
