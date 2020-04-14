@@ -12,17 +12,15 @@ namespace ScrumProject.Models
         [Key]
         public int InviteID { get; set; }
 
-        [ForeignKey("Getter")]
-        public string GetterID { get; set; }
-        public Profile Getter { get; set; }
+        public bool Accepted { get; set; }
 
-        [ForeignKey("Asker")]
-        public string AskerID { get; set; }
-        public Profile Asker { get; set; }
+        public IList<MeetingDateOptions> MeetingOptions { get; set; }
 
-        [ForeignKey("RegardsMeeting")]
-        public string MeetingID { get; set; }
-        public Meeting Meeting { get; set; }
-     
+        public string ProfileID { get; set; }
+        public Profile InviteReciever { get; set; }
+
+        public int Meeting { get; set; }
+        public Invite MeetingInvite { get; set; }
+
     }
 }

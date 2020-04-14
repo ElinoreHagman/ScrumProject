@@ -15,6 +15,7 @@ namespace ScrumProject.Models
         public DbSet<Post> Posts { get; set; }
         public DbSet<File> Files { get; set; }
         public DbSet<Invite> Invites { get; set; }
+        public DbSet<MeetingDateOptions> MeetingOptions { get; set; }
 
         public BlogDbContext() : base("BlogDb") { }
     }

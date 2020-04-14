@@ -184,6 +184,7 @@
     <Compile Include="Models\InviteIndexViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Meeting.cs" />
+    <Compile Include="Models\MeetingDateOptions.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\ProfileIndexViewModel.cs" />

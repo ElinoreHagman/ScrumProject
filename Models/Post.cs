@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -11,9 +12,23 @@ namespace ScrumProject.Models
         [Key]
         public int PostID { get; set; }
 
+        public string PublishedWall { get; set; }
+
+        [Required]
         public string Content { get; set; }
+
+        [Required]
+        public string Title { get; set; }
+
         public DateTime PostDateTime { get; set; }
-        public virtual User UserID { get; set; }
-        public virtual Category CategoryName { get; set; }
+
+        public int CategoryID { get; set; }
+        public Category Category { get; set; }
+
+        public IList<File> UploadedFiles { get; set; }
+
+        public string ProfileID { get; set; }
+        public Profile Author { get; set; }
+
     }
 }

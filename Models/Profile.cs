@@ -10,17 +10,24 @@ namespace ScrumProject.Models
     public class Profile
     {
         [Key]
-        public int ProfileID { get; set; }
+        [ForeignKey("User")]
+        public string ProfileID { get; set; }
+        public virtual User User { get; set; }
 
+        [Required]
         public string Forename { get; set; }
+
+        [Required]
         public string Surname { get; set; }
+
         public string Phonenumber { get; set; }
         public bool AdminRights { get; set; }
 
-        [InverseProperty("Getter")]
-        public IList<Invite> RequestRecievers { get; set; }
+        public IList<Post> WrittenPosts { get; set; }
 
-        [InverseProperty("Asker")]
-        public IList<Invite> RequestSenders { get; set; }
+        public IList<Meeting> MeetingsAccepted { get; set; }
+
+        public IList<Invite> MeetingsInvitedTo { get; set; }
+
     }
 }
