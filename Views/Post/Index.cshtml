@@ -1,0 +1,19 @@
+﻿@using ScrumProject.Models
+@model PostIndexViewModel
+
+<table>
+
+    @foreach (var post in Model.Posts)
+    {
+
+            <tr>
+
+              <td>@post.PostID</td>
+              <td>@post.Content</td>
+              <td>@post.PostDateTime</td>
+              <td>@post.UserID</td>
+              <td>@post.CategoryName</td>
+
+            </tr>
+    }
+</table>
