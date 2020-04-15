@@ -1,0 +1,32 @@
+﻿@using ScrumProject.Models
+@model PostIndexViewModel
+@{
+    ViewBag.Title = "ListShowPost";
+}
+
+<h2>Bloggvägg</h2>
+
+
+
+<div class="flex">
+    @foreach (var post in Model.Posts)
+    {
+        if (post.PublishedWall.Equals("Formell")) { 
+
+    <div id="blogPost">
+        <h3>
+            @post.Title
+        </h3>
+
+        @Html.Label("Category: ") @post.CategoryID @Html.Label("Date: ") @post.PostDateTime @Html.Label("Author")
+        <br />
+        @post.Content
+        <br />
+
+    </div>
+        }
+    }
+</div>
+
+
+

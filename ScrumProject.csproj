@@ -172,6 +172,7 @@
     <Compile Include="Controllers\InviteController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\WallController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -187,6 +188,7 @@
     <Compile Include="Models\MeetingDateOptions.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Models\PostIndexViewModel.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\ProfileIndexViewModel.cs" />
     <Compile Include="Models\User.cs" />
@@ -253,6 +255,7 @@
     <Content Include="Views\Profile\AddProfileForm.cshtml" />
     <Content Include="Views\Invite\Index.cshtml" />
     <Content Include="Views\Post\CreatePost.cshtml" />
+    <Content Include="Views\Wall\FormalWall.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
