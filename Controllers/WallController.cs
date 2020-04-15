@@ -15,14 +15,28 @@ namespace ScrumProject.Controllers
             return View();
         }
 
+        //public ActionResult FormalWall()
+        //{
+        //    var blogDB = new BlogDbContext();
+        //    var viewModel = new PostIndexViewModel
+        //    {
+        //        Posts = blogDB.Posts.ToList()
+        //    };
+        //    return View(viewModel);
+        //}
+
         public ActionResult FormalWall()
         {
             var blogDB = new BlogDbContext();
-            var viewModel = new PostIndexViewModel
+            
             {
-                Posts = blogDB.Posts.ToList()
-            };
-            return View(viewModel);
+                var categories = blogDB.Categories.ToList();
+                var viewModel = new PostIndexViewModel { Categories = categories };
+                return View(viewModel);
+            }
+
+           
         }
+
     }
 }

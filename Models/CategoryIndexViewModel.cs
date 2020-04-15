@@ -5,9 +5,8 @@ using System.Web;
 
 namespace ScrumProject.Models
 {
-    public class PostIndexViewModel
+    public class CategoryIndexViewModel
     {
-        public List<Post> Posts { get; set; }
         public List<Category> Categories { get; set; }
     }
 }
