@@ -34,11 +34,11 @@
     <div class="form-group">
         @Html.LabelFor(model => model.PublishedWall, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.RadioButtonFor(model => model.PublishedWall, "Utbildning")
-            @Html.Label("Utbildning")
+            @Html.RadioButtonFor(model => model.PublishedWall, "Formell")
+            @Html.Label("Formell")
             <br />
-            @Html.RadioButtonFor(model => model.PublishedWall, "Vetenskap")
-            @Html.Label("Vetenskap")
+            @Html.RadioButtonFor(model => model.PublishedWall, "Informell")
+            @Html.Label("Informell")
             
             @Html.ValidationMessageFor(model => model.PublishedWall, "", new { @class = "text-danger" })
         </div>
