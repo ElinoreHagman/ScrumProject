@@ -16,7 +16,8 @@ namespace ScrumProject.Models
         }
 
         [HttpPost]
-        public ActionResult CreatePost(Post model){
+        public ActionResult CreatePost(Post model)
+        {
 
             var ctx = new BlogDbContext();
             var post = new Post
@@ -31,7 +32,37 @@ namespace ScrumProject.Models
             ctx.Posts.Add(post);
             ctx.SaveChanges();
 
-            return View(post);
+            return RedirectToAction("FormalWall", "Wall");
+        }
+
+        [HttpGet]
+        public ActionResult EditPost(int postId)
+        {
+            var blogDB = new BlogDbContext();
+            var showPost = new Post();
+            showPost = blogDB.Posts.FirstOrDefault(u => u.PostID == postId);
+
+
+            return View(showPost);
+            
+        }
+
+        [HttpPost]
+        public ActionResult EditPost(Post model)
+        {
+
+            var blogDb = new BlogDbContext();
+            var editedPost = new Post();
+            editedPost = blogDb.Posts.FirstOrDefault(u => u.PostID == model.PostID);
+
+            editedPost.Title = model.Title;
+            editedPost.Content = model.Content;
+            //editedPost.CategoryID = model.CategoryID;
+            editedPost.PostDateTime = DateTime.Now;
+            blogDb.SaveChanges();
+        
+            return RedirectToAction("FormalWall", "Wall");
+          
         }
     }
 }

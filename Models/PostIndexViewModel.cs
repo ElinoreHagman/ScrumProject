@@ -8,5 +8,7 @@ namespace ScrumProject.Models
     public class PostIndexViewModel
     {
         public List<Post> Posts { get; set; }
+
+        public Post post { get; set; }
     }
 }
