@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -16,24 +17,54 @@ namespace ScrumProject.Models
         }
 
         [HttpPost]
-        public ActionResult CreatePost(Post model)
+        public ActionResult CreatePost(Post model, HttpPostedFileBase FilePath)
         {
 
             var ctx = new BlogDbContext();
             var post = new Post
             {
-                ProfileID = User.Identity.GetUserId(),
                 Title = model.Title,
                 Content = model.Content,
                 PublishedWall = model.PublishedWall,
                 PostDateTime = DateTime.Now,
                 CategoryID = 1, //Denna måste vi ändra senare
             };
-            ctx.Posts.Add(post);
-            ctx.SaveChanges();
 
+            try
+            {
+                    var checkextension = Path.GetExtension(FilePath.FileName).ToLower();
+                    if (checkextension.ToLower().Contains(".jpg") || checkextension.ToLower().Contains(".jpeg") || checkextension.Contains(".png"))
+                    {
+                        // path skapar sökväg för att lägga in bilden i projektmappen Images
+                        string path = System.IO.Path.Combine(Server.MapPath("~/Files"), System.IO.Path.GetFileName(FilePath.FileName));
+                        // relativePath skapar den relativa sökvägen som läggs in i databasen
+                        string relativePath = System.IO.Path.Combine("~/Files/" + FilePath.FileName);
+                        
+                        
+                        post.FilePath = relativePath;
+                        FilePath.SaveAs(path);
+                        ctx.Posts.Add(post);
+                        ctx.SaveChanges();
+                        ViewBag.FileStatus = "Photo uploaded successfully.";
+                    }
+
+                    else
+                    {
+                        ViewBag.FileStatus = "Only .JPEG and .PNG allowed";
+                    }
+
+                
+            }
+            catch (Exception)
+            {
+                ViewBag.FileStatus = "Error while photo uploading.";
+            }
+
+            ViewBag.EditStatus = "Successful registration";
             return RedirectToAction("FormalWall", "Wall");
+
         }
+
 
         [HttpGet]
         public ActionResult EditPost(int postId)

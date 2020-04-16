@@ -27,6 +27,11 @@ namespace ScrumProject.Models
 
         public IList<File> UploadedFiles { get; set; }
 
+        [DataType(DataType.Upload)]
+        [Display(Name = "Upload")]
+        [Required(ErrorMessage = "Please choose file to upload.")]
+        public string FilePath { get; set;  }
+
         public string ProfileID { get; set; }
         public Profile Author { get; set; }
 
