@@ -259,6 +259,7 @@
     <Content Include="Views\Post\CreatePost.cshtml" />
     <Content Include="Views\Post\EditPost.cshtml" />
     <Content Include="Views\Wall\FormalWall.cshtml" />
+    <Content Include="Views\Home\NotApprovedPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

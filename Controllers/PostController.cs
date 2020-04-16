@@ -15,14 +15,10 @@ namespace ScrumProject.Models
         {
 
             var ctx = new BlogDbContext();
+            var myList = ctx.Categories.ToList();
+            ViewBag.categories = myList;
 
-            var viewModel = new CategoryIndexViewModel
-            {
-                Categories = ctx.Categories.ToList(),
-                post = new Post()
-
-            };
-            return View(viewModel);
+            return View();
         }
 
         [HttpPost]
@@ -109,6 +105,21 @@ namespace ScrumProject.Models
             //editedPost.CategoryID = model.CategoryID;
             editedPost.PostDateTime = DateTime.Now;
             blogDb.SaveChanges();
+
+            return RedirectToAction("FormalWall", "Wall");
+
+        }
+
+        public ActionResult DeletePost(int id)
+        {
+
+            var blogDb = new BlogDbContext();
+
+            var postObject = blogDb.Posts.FirstOrDefault(x => x.PostID == id);
+
+            blogDb.Posts.Remove(postObject);
+            blogDb.SaveChanges();
+
 
             return RedirectToAction("FormalWall", "Wall");
 

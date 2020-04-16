@@ -13,6 +13,11 @@ namespace ScrumProject.Controllers
             return View();
         }
 
+        public ActionResult NotApprovedPage()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

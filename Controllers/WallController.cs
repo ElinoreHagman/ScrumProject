@@ -33,8 +33,15 @@ namespace ScrumProject.Controllers
             var blogDB = new BlogDbContext();
             var viewModel = new PostIndexViewModel();
 
-            viewModel.Posts = blogDB.Posts.Where(p => p.Category.Name == dropdownMenu).ToList();
-            viewModel.Categories = blogDB.Categories.ToList();
+            if(dropdownMenu == "0")
+            {
+                viewModel.Posts = blogDB.Posts.ToList();
+                viewModel.Categories = blogDB.Categories.ToList();
+            } else
+            {
+                viewModel.Posts = blogDB.Posts.Where(p => p.Category.Name == dropdownMenu).ToList();
+                viewModel.Categories = blogDB.Categories.ToList();
+            }
 
             return View("FormalWall", viewModel);
 
