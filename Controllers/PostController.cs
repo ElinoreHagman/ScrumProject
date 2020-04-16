@@ -36,7 +36,7 @@ namespace ScrumProject.Models
                 try
                 {
                     var checkextension = Path.GetExtension(FilePath.FileName).ToLower();
-                    if (checkextension.ToLower().Contains(".jpg") || checkextension.ToLower().Contains(".jpeg") || checkextension.Contains(".png"))
+                    if (checkextension.ToLower().Contains(".jpg") || checkextension.ToLower().Contains(".jpeg") || checkextension.Contains(".png") || checkextension.Contains(".pdf"))
                     {
                         // path skapar sökväg för att lägga in bilden i projektmappen Images
                         string path = System.IO.Path.Combine(Server.MapPath("~/Files"), System.IO.Path.GetFileName(FilePath.FileName));
