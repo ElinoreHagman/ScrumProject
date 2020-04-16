@@ -20,7 +20,8 @@ namespace ScrumProject.Controllers
             var blogDB = new BlogDbContext();
             var viewModel = new PostIndexViewModel
             {
-                Posts = blogDB.Posts.ToList()
+                Posts = blogDB.Posts.ToList(),
+                Categories = blogDB.Categories.ToList()
             };
             return View(viewModel);
         }
@@ -38,16 +39,16 @@ namespace ScrumProject.Controllers
         //}
 
         [HttpPost]
-        public ActionResult _sortCategory()
+        public ActionResult Submit(string dropdownMenu)
         {
+
             var blogDB = new BlogDbContext();
+            var viewModel = new PostIndexViewModel();
 
-            {
-                var categories = blogDB.Categories.ToList();
-                var viewModel = new PostIndexViewModel { Categories = categories };
-                return View(viewModel);
-            }
+            viewModel.Posts = blogDB.Posts.Where(p => p.Category.Name == dropdownMenu).ToList();
+            viewModel.Categories = blogDB.Categories.ToList();
 
+            return View("FormalWall", viewModel);
 
         }
 
