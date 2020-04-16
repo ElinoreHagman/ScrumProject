@@ -13,21 +13,33 @@ namespace ScrumProject.Models
         // GET: Post
         public ActionResult CreatePost()
         {
-            return View();
+            
+            var ctx = new BlogDbContext();
+
+
+
+            var viewModel = new CategoryIndexViewModel
+            {
+                Categories = ctx.Categories.ToList(),
+                post = new Post()
+
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult CreatePost(Post model, HttpPostedFileBase FilePath)
+        public ActionResult CreatePost(Post model, HttpPostedFileBase FilePath, string dropdownMenu)
         {
 
             var ctx = new BlogDbContext();
+            var catId = ctx.Categories.FirstOrDefault(p => p.Name == dropdownMenu);
             var post = new Post
             {
                 Title = model.Title,
                 Content = model.Content,
                 PublishedWall = model.PublishedWall,
                 PostDateTime = DateTime.Now,
-                CategoryID = 1, //Denna måste vi ändra senare
+                CategoryID = catId.CategoryID
             };
 
             if (FilePath != null)
