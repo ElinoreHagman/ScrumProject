@@ -1,0 +1,22 @@
+﻿@using ScrumProject.Models
+@model PostIndexViewModel
+
+@*@using (Html.BeginForm("_sortCategory", "Wall", FormMethod.Post))*@
+@*{*@
+
+@Html.DropDownListFor(m => m.Categories, new SelectList(Model.Categories, "CategoryID", "Name"), " ")
+<button type="submit" onclick="Sort()">Välj</button>
+@*@section scripts{
+    <script type="text/javascript">
+  function Sort()
+    {
+          if (confirm('Are you sure?')) {
+                window.location.href = "@Url.Action("Test")";
+
+            }
+    }
+    </script>
+
+}*@
+
+@*}*@

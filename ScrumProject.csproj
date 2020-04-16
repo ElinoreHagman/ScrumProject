@@ -257,6 +257,8 @@
     <Content Include="Views\Invite\Index.cshtml" />
     <Content Include="Views\Post\CreatePost.cshtml" />
     <Content Include="Views\Wall\FormalWall.cshtml" />
+    <Content Include="Views\Wall\_sortCategory.cshtml" />
+    <Content Include="Views\Wall\_showPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

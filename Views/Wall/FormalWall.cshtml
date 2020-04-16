@@ -1,37 +1,30 @@
 ﻿@using ScrumProject.Models
 @model PostIndexViewModel
-@*@model CategoryIndexViewModel*@
 
-@{
-    ViewBag.Title = "sortCategory";
-}
+    <h2>Bloggvägg</h2>
 
-<h2>Bloggvägg</h2>
-
-@Html.DropDownListFor(m => m.Categories, new SelectList(Model.Categories, "CategoryID", "Name"), " ")
-@*@Html.DropDownList("CategoryID", new SelectList(ViewBag.data, "CategoryID", "Name"))*@
-
-@*<div class="flex">
-    @foreach (var post in Model.Posts)
-    {
-        if (post.PublishedWall.Equals("Formell"))
+    <div class="flex">
+        @foreach (var post in Model.Posts)
         {
+            if (post.PublishedWall.Equals("Formell"))
+            {
 
-            <div id="blogPost">
-                <h3>
-                    @post.Title
-                </h3>
+                <div id="blogPost">
+                    <h3>
+                        @post.Title
+                    </h3>
 
-                @Html.Label("Category: ") @post.CategoryID @Html.Label("Date: ") @post.PostDateTime @Html.Label("Author")
-                <br />
-                @post.Content
-                <br />
+                    @Html.Label("Category: ") @post.CategoryID @Html.Label("Date: ") @post.PostDateTime @Html.Label("Author")
+                    <br />
+                    @post.Content
+                    <br />
 
-            </div>
+                </div>
+            }
         }
-    }
-</div>*@
+    </div>
 
+@Html.Partial("_sortCategory")
 
 
 
