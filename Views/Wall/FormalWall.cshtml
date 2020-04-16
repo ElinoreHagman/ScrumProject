@@ -1,0 +1,52 @@
+﻿@using ScrumProject.Models
+@model PostIndexViewModel
+@{
+    ViewBag.Title = "ListShowPost";
+}
+
+<div class="category">
+
+    @using (Html.BeginForm("Submit", "Wall", FormMethod.Post))
+    {
+        <select id="dropdownMenu" name="dropdownMenu">
+
+            <option value="0">Choose category</option>
+            @foreach (var category in Model.Categories)
+            {
+                <option value="@category.Name">@category.Name</option>
+            }
+
+        </select>
+
+        <input type="submit" value="Submit" />
+    }
+
+</div>
+
+<h2>Bloggvägg</h2>
+
+<div class="flex">
+    @foreach (var post in Model.Posts)
+    {
+        if (post.PublishedWall.Equals("Formell"))
+        {
+
+            <div id="blogPost">
+                <h3>
+                    @post.Title
+                </h3>
+
+                @Html.Label("Category: ") @post.CategoryID @Html.Label("Date: ") @post.PostDateTime @Html.Label("Author")
+                <br />
+                @post.Content
+                <br />
+
+                @Html.ActionLink("Edit Profile", "EditPost", "Post", new { postId = @post.PostID }, null)
+
+
+            </div>
+        }
+    }
+</div>
+
+

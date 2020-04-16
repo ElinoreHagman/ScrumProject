@@ -25,8 +25,12 @@ namespace ScrumProject.Models
         public int CategoryID { get; set; }
         public Category Category { get; set; }
 
-        public IList<File> UploadedFiles { get; set; }
+        //public IList<File> UploadedFiles { get; set; }
 
+        [DataType(DataType.Upload)]
+        [Display(Name = "Upload")]
+        public string FilePath { get; set; }
+        
         public string ProfileID { get; set; }
         public Profile Author { get; set; }
 

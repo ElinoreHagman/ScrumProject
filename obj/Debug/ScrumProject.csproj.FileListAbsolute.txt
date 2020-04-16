@@ -319,3 +319,4 @@ C:\Users\elino\Documents\ScrumProjektGrupp10\ScrumProject\obj\Debug\ScrumProject
 C:\Users\elino\Documents\ScrumProjektGrupp10\ScrumProject\obj\Debug\ScrumProject.csproj.CopyComplete
 C:\Users\elino\Documents\ScrumProjektGrupp10\ScrumProject\obj\Debug\ScrumProject.dll
 C:\Users\elino\Documents\ScrumProjektGrupp10\ScrumProject\obj\Debug\ScrumProject.pdb
+C:\Users\elino\Documents\ScrumProjektGrupp10\ScrumProject\obj\Debug\ScrumProject.csprojAssemblyReference.cache

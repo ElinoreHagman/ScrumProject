@@ -168,16 +168,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InviteController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\WallController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CategoryIndexViewModel.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Invite.cs" />
@@ -186,6 +190,7 @@
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\MeetingDateOptions.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\PostIndexViewModel.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\ProfileIndexViewModel.cs" />
     <Compile Include="Models\User.cs" />
@@ -251,9 +256,13 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\AddProfileForm.cshtml" />
     <Content Include="Views\Invite\Index.cshtml" />
+    <Content Include="Views\Post\CreatePost.cshtml" />
+    <Content Include="Views\Post\EditPost.cshtml" />
+    <Content Include="Views\Wall\FormalWall.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Category\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
