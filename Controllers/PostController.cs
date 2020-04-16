@@ -30,11 +30,11 @@ namespace ScrumProject.Models
                 CategoryID = 1, //Denna måste vi ändra senare
             };
 
-            ctx.Posts.Add(post);
-            ctx.SaveChanges();
-
-            try
+            if (FilePath != null)
             {
+
+                try
+                {
                     var checkextension = Path.GetExtension(FilePath.FileName).ToLower();
                     if (checkextension.ToLower().Contains(".jpg") || checkextension.ToLower().Contains(".jpeg") || checkextension.Contains(".png"))
                     {
@@ -43,14 +43,10 @@ namespace ScrumProject.Models
                         // relativePath skapar den relativa sökvägen som läggs in i databasen
                         string relativePath = System.IO.Path.Combine("~/Files/" + FilePath.FileName);
 
-                        var file = new File();                        
-
-                        file.Root = relativePath;
-                        int lastID = ctx.Posts.Max(item => item.PostID);
-                        file.PostID = lastID;
-                        ctx.Files.Add(file);
-                        //ctx.Posts.Add(post);
-                        //ctx.SaveChanges();
+                        post.FilePath = relativePath;
+                        ctx.Posts.Add(post);
+                        FilePath.SaveAs(path);
+                        ctx.SaveChanges();
                         ViewBag.FileStatus = "Photo uploaded successfully.";
                     }
 
@@ -59,11 +55,16 @@ namespace ScrumProject.Models
                         ViewBag.FileStatus = "Only .JPEG and .PNG allowed";
                     }
 
-                
-            }
-            catch (Exception)
+
+                }
+                catch (Exception)
+                {
+                    ViewBag.FileStatus = "Error while photo uploading.";
+                }
+            } else
             {
-                ViewBag.FileStatus = "Error while photo uploading.";
+                ctx.Posts.Add(post);
+                ctx.SaveChanges();
             }
 
             ViewBag.EditStatus = "Successful registration";
