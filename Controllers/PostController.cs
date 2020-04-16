@@ -30,6 +30,9 @@ namespace ScrumProject.Models
                 CategoryID = 1, //Denna måste vi ändra senare
             };
 
+            ctx.Posts.Add(post);
+            ctx.SaveChanges();
+
             try
             {
                     var checkextension = Path.GetExtension(FilePath.FileName).ToLower();
@@ -39,12 +42,15 @@ namespace ScrumProject.Models
                         string path = System.IO.Path.Combine(Server.MapPath("~/Files"), System.IO.Path.GetFileName(FilePath.FileName));
                         // relativePath skapar den relativa sökvägen som läggs in i databasen
                         string relativePath = System.IO.Path.Combine("~/Files/" + FilePath.FileName);
-                        
-                        
-                        post.FilePath = relativePath;
-                        FilePath.SaveAs(path);
-                        ctx.Posts.Add(post);
-                        ctx.SaveChanges();
+
+                        var file = new File();                        
+
+                        file.Root = relativePath;
+                        int lastID = ctx.Posts.Max(item => item.PostID);
+                        file.PostID = lastID;
+                        ctx.Files.Add(file);
+                        //ctx.Posts.Add(post);
+                        //ctx.SaveChanges();
                         ViewBag.FileStatus = "Photo uploaded successfully.";
                     }
 
