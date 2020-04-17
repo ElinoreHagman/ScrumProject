@@ -12,20 +12,19 @@ namespace ScrumProject.Models
         [Key]
         public int PostID { get; set; }
 
+        [Required]
         public string PublishedWall { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "You can't leave this field empty")]
         public string Content { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "You can't leave this field empty")]
         public string Title { get; set; }
 
+        [Required]
         public DateTime PostDateTime { get; set; }
 
-        public int CategoryID { get; set; }
         public Category Category { get; set; }
-
-        //public IList<File> UploadedFiles { get; set; }
 
         [DataType(DataType.Upload)]
         [Display(Name = "Upload")]

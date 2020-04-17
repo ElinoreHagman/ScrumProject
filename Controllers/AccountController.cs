@@ -169,13 +169,19 @@ namespace ScrumProject.Controllers
                 {
                     var ctx = new BlogDbContext();
                     var newUser = new User();
+                    var newProfile = new Profile();
 
                     newUser.UserID = user.Id;
                     newUser.Password = user.PasswordHash;
                     newUser.Email = user.Email;
                     newUser.Approved = false;
+                    newProfile.ProfileID = user.Id;
+                    newProfile.Forename = model.Forename;
+                    newProfile.Surname = model.Surname;
+                    newProfile.AdminRights = false;
 
                     ctx.Users.Add(newUser);
+                    ctx.Profiles.Add(newProfile);
                     ctx.SaveChanges();
 
                     //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

@@ -11,8 +11,8 @@ namespace ScrumProject.Models
     {
         [Key]
         public int CategoryID { get; set; }
-
-        [Required]
+        
+        [Required(ErrorMessage = "The category must have a name")]
         public string Name { get; set; }
 
         public IList<Post> PostsInCategory { get; set; }

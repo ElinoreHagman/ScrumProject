@@ -33,7 +33,7 @@ namespace ScrumProject.Models
                 Content = model.Content,
                 PublishedWall = model.PublishedWall,
                 PostDateTime = DateTime.Now,
-                CategoryID = catId.CategoryID
+                Category = catId
             };
 
             if (FilePath != null)

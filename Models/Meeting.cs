@@ -12,12 +12,13 @@ namespace ScrumProject.Models
         [Key]
         public int MeetingID { get; set; }
 
+        [Required(ErrorMessage = "The meeting must have a name")]
         public string Name { get; set; }
 
         public DateTime MeetingDateTime { get; set; }
 
         public IList <Profile> ParticipantsWhoAccepted { get; set; }
-
+        
         public string ProfileID { get; set; }
         public Profile Booker { get; set; }
 
