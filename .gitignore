@@ -19,6 +19,11 @@ mono_crash.*
 # Visual Studio 2015 cache/options directory
 .vs/
 
+# SQL Server files
+*.mdf
+*.ldf
+*.ndf
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
