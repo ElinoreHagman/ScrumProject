@@ -17,9 +17,9 @@ namespace ScrumProject.Models
 
         public DateTime MeetingDateTime { get; set; }
 
+        [InverseProperty("MeetingsAccepted")]
         public IList <Profile> ParticipantsWhoAccepted { get; set; }
-        
-        public string ProfileID { get; set; }
+
         public Profile Booker { get; set; }
 
     }

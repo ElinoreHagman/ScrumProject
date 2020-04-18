@@ -194,6 +194,14 @@
     <Compile Include="Migrations\202004171553323_addedMeetingName.Designer.cs">
       <DependentUpon>202004171553323_addedMeetingName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004180916119_fixaMeeting.cs" />
+    <Compile Include="Migrations\202004180916119_fixaMeeting.Designer.cs">
+      <DependentUpon>202004180916119_fixaMeeting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004180918489_ChangeMeeting.cs" />
+    <Compile Include="Migrations\202004180918489_ChangeMeeting.Designer.cs">
+      <DependentUpon>202004180918489_ChangeMeeting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
@@ -308,6 +316,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004171553323_addedMeetingName.resx">
       <DependentUpon>202004171553323_addedMeetingName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004180916119_fixaMeeting.resx">
+      <DependentUpon>202004180916119_fixaMeeting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004180918489_ChangeMeeting.resx">
+      <DependentUpon>202004180918489_ChangeMeeting.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
