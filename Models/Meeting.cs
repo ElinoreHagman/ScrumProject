@@ -17,12 +17,12 @@ namespace ScrumProject.Models
 
         public DateTime MeetingDateTime { get; set; }
 
-        [InverseProperty("MeetingsAccepted")]
+        [InverseProperty("AcceptedMeetings")]
         public IList <Profile> ParticipantsWhoAccepted { get; set; }
 
-        [ForeignKey("MeetingsStarted")]
+        [ForeignKey("CreatorOfMeetings")]
         public string ProfileId { get; set; }
-        public virtual Profile MeetingsStarted { get; set; }
+        public virtual Profile CreatorOfMeetings { get; set; }
 
     }
 

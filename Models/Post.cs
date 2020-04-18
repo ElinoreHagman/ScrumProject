@@ -29,9 +29,10 @@ namespace ScrumProject.Models
         [DataType(DataType.Upload)]
         [Display(Name = "Upload")]
         public string FilePath { get; set; }
-        
+
+        [ForeignKey("AuthorOfPosts")]
         public string ProfileID { get; set; }
-        public Profile Author { get; set; }
+        public Profile AuthorOfPosts { get; set; }
 
     }
 }

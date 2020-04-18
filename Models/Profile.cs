@@ -22,14 +22,14 @@ namespace ScrumProject.Models
         public string Phonenumber { get; set; }
         public bool AdminRights { get; set; }
 
-        public IList<Post> WrittenPosts { get; set; }
-        public IList<Message> MessagesWritten { get; set; }
+        public IList<Post> AuthorOfPosts { get; set; }
+        public IList<Message> AuthorOfMessages { get; set; }
 
-        public IList<Invite> MeetingsInvitedTo { get; set; }
+        public IList<Invite> InviteReciever { get; set; }
 
-        public IList<Meeting> MeetingsAccepted { get; set; }
+        public IList<Meeting> AcceptedMeetings { get; set; }
 
-        public IList<Meeting> MeetingsStarted { get; set; }
+        public IList<Meeting> CreatorOfMeetings { get; set; }
         public virtual Settings Settings { get; set; }
     }
 }

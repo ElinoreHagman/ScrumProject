@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InviteController.cs" />
@@ -206,9 +207,14 @@
     <Compile Include="Migrations\202004181022003_databaseMeetingschanged.Designer.cs">
       <DependentUpon>202004181022003_databaseMeetingschanged.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004181240431_ChangedDatabaseLogicAgain.cs" />
+    <Compile Include="Migrations\202004181240431_ChangedDatabaseLogicAgain.Designer.cs">
+      <DependentUpon>202004181240431_ChangedDatabaseLogicAgain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
+    <Compile Include="Models\CalendarIndexViewModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryIndexViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -290,6 +296,7 @@
     <Content Include="Views\Post\EditPost.cshtml" />
     <Content Include="Views\Wall\FormalWall.cshtml" />
     <Content Include="Views\Home\NotApprovedPage.cshtml" />
+    <Content Include="Views\Calendar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -329,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004181022003_databaseMeetingschanged.resx">
       <DependentUpon>202004181022003_databaseMeetingschanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004181240431_ChangedDatabaseLogicAgain.resx">
+      <DependentUpon>202004181240431_ChangedDatabaseLogicAgain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
