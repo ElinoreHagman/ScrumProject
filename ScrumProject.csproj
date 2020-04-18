@@ -202,6 +202,10 @@
     <Compile Include="Migrations\202004180918489_ChangeMeeting.Designer.cs">
       <DependentUpon>202004180918489_ChangeMeeting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004181022003_databaseMeetingschanged.cs" />
+    <Compile Include="Migrations\202004181022003_databaseMeetingschanged.Designer.cs">
+      <DependentUpon>202004181022003_databaseMeetingschanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
@@ -322,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004180918489_ChangeMeeting.resx">
       <DependentUpon>202004180918489_ChangeMeeting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004181022003_databaseMeetingschanged.resx">
+      <DependentUpon>202004181022003_databaseMeetingschanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -26,8 +26,10 @@ namespace ScrumProject.Models
         public IList<Message> MessagesWritten { get; set; }
 
         public IList<Invite> MeetingsInvitedTo { get; set; }
+
         public IList<Meeting> MeetingsAccepted { get; set; }
 
+        public IList<Meeting> MeetingsStarted { get; set; }
         public virtual Settings Settings { get; set; }
     }
 }

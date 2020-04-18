@@ -20,7 +20,9 @@ namespace ScrumProject.Models
         [InverseProperty("MeetingsAccepted")]
         public IList <Profile> ParticipantsWhoAccepted { get; set; }
 
-        public Profile Booker { get; set; }
+        [ForeignKey("MeetingsStarted")]
+        public string ProfileId { get; set; }
+        public virtual Profile MeetingsStarted { get; set; }
 
     }
 

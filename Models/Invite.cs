@@ -19,6 +19,7 @@ namespace ScrumProject.Models
 
         public IList<MeetingDateOptions> MeetingOptions { get; set; }
 
+        [ForeignKey("InviteReciever")]
         public string ProfileID { get; set; }
         public Profile InviteReciever { get; set; }
 
