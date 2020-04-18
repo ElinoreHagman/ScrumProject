@@ -15,7 +15,7 @@ namespace ScrumProject.Models
         [Required]
         public DateTime Date { get; set; }
 
-        public IList<Invite> BelongsToInvites { get; set; }
+        public IList<MeetingDateOptionsToInvite> BelongsToInvites { get; set; }
 
     }
 }

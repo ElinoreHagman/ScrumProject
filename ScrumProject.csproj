@@ -211,6 +211,14 @@
     <Compile Include="Migrations\202004181240431_ChangedDatabaseLogicAgain.Designer.cs">
       <DependentUpon>202004181240431_ChangedDatabaseLogicAgain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004181958226_newTableJunction.cs" />
+    <Compile Include="Migrations\202004181958226_newTableJunction.Designer.cs">
+      <DependentUpon>202004181958226_newTableJunction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004182004176_newJunctionTablle.cs" />
+    <Compile Include="Migrations\202004182004176_newJunctionTablle.Designer.cs">
+      <DependentUpon>202004182004176_newJunctionTablle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
@@ -223,11 +231,13 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\MeetingDateOptions.cs" />
+    <Compile Include="Models\MeetingDateOptionsToInvite.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostIndexViewModel.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\ProfileIndexViewModel.cs" />
+    <Compile Include="Models\ProfilesToMeetings.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -339,6 +349,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004181240431_ChangedDatabaseLogicAgain.resx">
       <DependentUpon>202004181240431_ChangedDatabaseLogicAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004181958226_newTableJunction.resx">
+      <DependentUpon>202004181958226_newTableJunction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004182004176_newJunctionTablle.resx">
+      <DependentUpon>202004182004176_newJunctionTablle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

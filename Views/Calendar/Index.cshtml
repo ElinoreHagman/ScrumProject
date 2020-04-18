@@ -16,8 +16,20 @@
         </div>
         <div class="calendar-box-information">
             <h2>@meeting.Name</h2>
-            <h3>Bokad av: @meeting.CreatorOfMeetings.Forename @meeting.CreatorOfMeetings.Surname</h3>
-            <h3></h3>
+            <h4>Bokare: <span>@meeting.CreatorOfMeetings.Forename @meeting.CreatorOfMeetings.Surname</span>
+
+            
+                Deltagare:
+                @foreach (var participants in Model.ProfilesToMeetings)
+                {
+
+                    if (participants.MeetingID == meeting.MeetingID)
+                    {
+                        <span>@participants.Profile.Forename @participants.Profile.Surname</span>
+                    }
+
+                }
+            </h4>
         </div>
     </div>
 

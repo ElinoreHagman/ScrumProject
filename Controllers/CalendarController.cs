@@ -15,7 +15,7 @@ namespace ScrumProject.Controllers
             var ctx = new BlogDbContext();
             var viewmodel = new CalendarIndexViewModel();
             viewmodel.Meetings = ctx.Meetings.ToList();
-            viewmodel.Profiles = ctx.Profiles.ToList();
+            viewmodel.ProfilesToMeetings = ctx.ProfilesToMeetings.ToList();
 
             return View(viewmodel);
         }

@@ -17,7 +17,7 @@ namespace ScrumProject.Models
 
         public bool Accepted { get; set; }
 
-        public IList<MeetingDateOptions> MeetingOptions { get; set; }
+        public IList<MeetingDateOptionsToInvite> MeetingOptions { get; set; }
 
         [ForeignKey("InviteReciever")]
         public string ProfileID { get; set; }

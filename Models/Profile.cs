@@ -27,7 +27,7 @@ namespace ScrumProject.Models
 
         public IList<Invite> InviteReciever { get; set; }
 
-        public IList<Meeting> AcceptedMeetings { get; set; }
+        public IList<ProfilesToMeetings> AcceptedMeetings { get; set; }
 
         public IList<Meeting> CreatorOfMeetings { get; set; }
         public virtual Settings Settings { get; set; }

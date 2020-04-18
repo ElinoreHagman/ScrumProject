@@ -55,3 +55,13 @@ textarea {
 .calendar-box-information {
     margin: 20px;
 }
+
+.calendar-box-information h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.calendar-box-information span {
+    background-color: #e1e1e1;
+    padding: 2px 13px;
+}
