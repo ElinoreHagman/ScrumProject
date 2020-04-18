@@ -23,3 +23,35 @@ textarea {
     max-width: 280px;
 }
 
+.calendar-box {
+    background-color: white;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.dateHolder {
+    height: auto;
+    width: 100px;
+    background-color: #212440;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    color: #dddddd;
+}
+
+.dateHolder h2 {
+    margin: auto;
+    font-weight: bold;
+    font-size: 25px;
+    padding-bottom: 5px;
+}
+
+.dateHolder h3 {
+    margin: auto;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.calendar-box-information {
+    margin: 20px;
+}
