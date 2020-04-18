@@ -219,12 +219,17 @@
     <Compile Include="Migrations\202004182004176_newJunctionTablle.Designer.cs">
       <DependentUpon>202004182004176_newJunctionTablle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004182220124_addedCommentDatabase.cs" />
+    <Compile Include="Migrations\202004182220124_addedCommentDatabase.Designer.cs">
+      <DependentUpon>202004182220124_addedCommentDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
     <Compile Include="Models\CalendarIndexViewModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryIndexViewModel.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Invite.cs" />
     <Compile Include="Models\InviteIndexViewModel.cs" />
@@ -355,6 +360,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004182004176_newJunctionTablle.resx">
       <DependentUpon>202004182004176_newJunctionTablle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004182220124_addedCommentDatabase.resx">
+      <DependentUpon>202004182220124_addedCommentDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -34,5 +34,7 @@ namespace ScrumProject.Models
         public string ProfileID { get; set; }
         public Profile AuthorOfPosts { get; set; }
 
+        public IList<Comment> Comments { get; set; }
+
     }
 }
