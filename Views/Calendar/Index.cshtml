@@ -1,8 +1,10 @@
 ﻿@using ScrumProject.Models
 @model CalendarIndexViewModel
 
-<br />
-<div class="jumbotron">
+
+<div class="calenderPage">
+
+<div class="jumbotron margin">
 
     @foreach (var meeting in Model.Meetings)
     {
@@ -16,9 +18,10 @@
         </div>
         <div class="calendar-box-information">
             <h2>@meeting.Name</h2>
-            <h4>Bokare: <span>@meeting.CreatorOfMeetings.Forename @meeting.CreatorOfMeetings.Surname</span>
-
-            
+            <h4>
+                Bokare: <span>@meeting.CreatorOfMeetings.Forename @meeting.CreatorOfMeetings.Surname</span>
+            </h4>
+            <h4>
                 Deltagare:
                 @foreach (var participants in Model.ProfilesToMeetings)
                 {
@@ -38,3 +41,5 @@
 </div>
 
 @Html.Partial("_MeetingForm", new MeetingIndexViewModel())
+
+</div>

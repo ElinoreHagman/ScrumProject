@@ -4,30 +4,43 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>User</h4>
+    <div class="form-horizontal jumbotron meeting-form">
+        <h4>Skapa nytt möte</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <strong>Namn på mötet:</strong>
         <div class="form-group">
-            @Html.LabelFor(model => model.MeetingName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.MeetingName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.MeetingName, "", new { @class = "text-danger" })
             </div>
         </div>
 
+        <strong>Datumförslag 1:</strong>
         <div class="form-group">
-            @Html.LabelFor(model => model.MeetingDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MeetingDate, new { htmlAttributes = new { type = "date", @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MeetingDate, "", new { @class = "text-danger" })
-                @Html.EditorFor(model => model.MeetingTime, new { htmlAttributes = new { type = "time", @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MeetingTime, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { type = "date", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Time, new { htmlAttributes = new { type = "time", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
+
             </div>
         </div>
 
-        <div class="col-md-10">
+        <strong>Datumförslag 2:</strong>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Date2, new { htmlAttributes = new { type = "date", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Date2, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Time2, new { htmlAttributes = new { type = "time", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Time2, "", new { @class = "text-danger" })
 
+            </div>
+        </div>
+
+        <div class="form-grou">
+            <strong>Bjud in en eller flera personer</strong> <br />(Håll ner CTRL när du väljer fler)
             <select multiple="multiple" id="invitedProfile" name="invitedProfile" class="form-control" style="margin-bottom: 5px;">
                 @foreach (var profile in (ViewBag.people as List<ScrumProject.Models.Profile>))
                 {
@@ -38,12 +51,7 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+            <input type="submit" value="Skicka inbjudan" class="btn btn-success" style="margin: 5px 0 0 16px;" />
         </div>
     </div>
 }
-
-
-
