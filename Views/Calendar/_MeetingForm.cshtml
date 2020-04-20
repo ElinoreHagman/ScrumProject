@@ -19,8 +19,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MeetingDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MeetingDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.MeetingDate, new { htmlAttributes = new { type = "date", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.MeetingDate, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.MeetingTime, new { htmlAttributes = new { type = "time", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MeetingTime, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -29,7 +31,7 @@
             <select multiple="multiple" id="invitedProfile" name="invitedProfile" class="form-control" style="margin-bottom: 5px;">
                 @foreach (var profile in (ViewBag.people as List<ScrumProject.Models.Profile>))
                 {
-            <option value="@profile.ProfileID">@profile.Forename @profile.Surname</option>
+                    <option value="@profile.ProfileID">@profile.Forename @profile.Surname</option>
                 }
             </select>
 
