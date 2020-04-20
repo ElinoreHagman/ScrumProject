@@ -312,6 +312,9 @@
     <Content Include="Views\Wall\FormalWall.cshtml" />
     <Content Include="Views\Home\NotApprovedPage.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\Profile\ShowProfile.cshtml" />
+    <Content Include="Views\Profile\SelectCategory.cshtml" />
+    <Content Include="Views\Profile\EditPhoneNumber.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
