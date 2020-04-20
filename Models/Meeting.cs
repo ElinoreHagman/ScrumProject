@@ -15,7 +15,7 @@ namespace ScrumProject.Models
         [Required(ErrorMessage = "The meeting must have a name")]
         public string Name { get; set; }
 
-        public DateTime MeetingDateTime { get; set; }
+        public DateTime? MeetingDateTime { get; set; }
 
         public IList <ProfilesToMeetings> ParticipantsWhoAccepted { get; set; }
 

@@ -13,7 +13,7 @@ namespace ScrumProject.Models
         public int OptionID { get; set; }
 
         [Required]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         public IList<MeetingDateOptionsToInvite> BelongsToInvites { get; set; }
 
