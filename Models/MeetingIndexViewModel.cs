@@ -10,6 +10,6 @@ namespace ScrumProject.Models
         public string MeetingName { get; set; }
         public DateTime MeetingDate { get; set; }
         public string Invited { get; set; }
-        public IList<Profile> profiles { get; set; }
+        public IList<Profile> Profiles { get; set; }
     }
 }
