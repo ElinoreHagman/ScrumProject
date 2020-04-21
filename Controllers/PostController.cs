@@ -29,6 +29,7 @@ namespace ScrumProject.Models
             var catId = ctx.Categories.FirstOrDefault(p => p.Name == dropdownMenu);
             var post = new Post
             {
+
                 Title = model.Title,
                 Content = model.Content,
                 PublishedWall = model.PublishedWall,
