@@ -12,6 +12,10 @@ namespace ScrumProject.Controllers
         {
             return View();
         }
+        public ActionResult Chat()
+        {
+            return View("ChatView");
+        }
 
         public ActionResult NotApprovedPage()
         {
