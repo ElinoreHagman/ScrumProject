@@ -16,17 +16,90 @@ namespace ScrumProject.Controllers
             var ctx = new BlogDbContext();
             var viewmodel = new CalendarIndexViewModel();
             viewmodel.ProfilesToMeetings = ctx.ProfilesToMeetings.ToList();
-
             viewmodel.Meetings = ctx.Meetings.Where(x => x.EveryoneAnswered == true).ToList();
-
             ViewBag.people = ctx.Profiles.ToList();
+
             var user = User.Identity.GetUserId();
-            var invites = ctx.Invites.Where(x => x.ProfileID == user).ToList();
-            var InviteID = ctx.Invites.Where(x => x.ProfileID == user).Select(x => x.InviteID).Single();
-            var MeetingInviteIndex = ctx.MeetingDateOptionsToInvite.Where(x => x.InviteID == InviteID).Select(x => x.MeetingDateOptionID).Single();
-            ViewBag.date = ctx.MeetingOptions.Where(x => x.OptionID == MeetingInviteIndex);
+            var InviteIDs = ctx.Invites.Where(x => x.ProfileID == user && x.Accepted == false).Select(x => x.InviteID).ToList();
+
+            ViewBag.inviteInformation = new List<InviteModel>();
+
+            foreach (var invite in InviteIDs)
+            {
+                var DateIds = new List<int>();
+                DateIds = ctx.MeetingDateOptionsToInvite.Where(x => x.InviteID == invite).Select(x => x.MeetingDateOptionID).ToList();
+
+                var dateDetails = new List<DateTime>();
+
+                foreach (var dateid in DateIds)
+                {
+                    dateDetails.Add(ctx.MeetingOptions.Where(x => x.OptionID == dateid).Select(x => x.Date).Single());
+                }
+
+                string meetingName = ctx.Invites.Where(x => x.InviteID == invite).Select(x => x.MeetingName).Single();
+
+                var inviteTemplate = new InviteModel()
+                {
+                    MeetingName = meetingName,
+                    Creator = ctx.Meetings.Where(x => x.Name == meetingName).Select(x => x.ProfileId).Single(),
+                    DateSuggestion1 = dateDetails[0],
+                    DateSuggestion2 = dateDetails[1],
+                    InviteId = invite
+                };
+
+                ViewBag.inviteInformation.Add(inviteTemplate);
+
+            }
+
 
             return View(viewmodel);
+        }
+
+        public ActionResult AnswerInvite(string IsChecked, string inviteId, string meetingName)
+        {
+            int inviteNumber = Int32.Parse(inviteId);
+
+            var ctx = new BlogDbContext();
+
+            if (IsChecked != "False")
+            {
+                DateTime chosenDate = Convert.ToDateTime(IsChecked);
+
+                var invite = ctx.Invites.FirstOrDefault(x => x.InviteID == inviteNumber);
+                invite.ChosenDate = chosenDate;
+                invite.Accepted = true;
+                ctx.SaveChanges();
+                TempData["accepted"] = "Du har skickat datumförslag för mötet!";
+
+            } else
+            {
+
+                var invite = ctx.Invites.FirstOrDefault(x => x.InviteID == inviteNumber);
+                ctx.Invites.Remove(invite);
+                var inviteDates = ctx.MeetingDateOptionsToInvite.Where(x => x.InviteID == inviteNumber).ToList();
+                ctx.MeetingDateOptionsToInvite.RemoveRange(inviteDates);
+                ctx.SaveChanges();
+            }
+
+            var allInvitesInMeetings = ctx.Invites.Where(x => x.MeetingName == meetingName).ToList();
+            bool EveryoneAnswered = true;
+
+            foreach(var invite in allInvitesInMeetings)
+            {
+                if(!invite.Accepted)
+                {
+                    EveryoneAnswered = false;
+                }
+            }
+
+            if(EveryoneAnswered)
+            {
+                var meeting = ctx.Meetings.FirstOrDefault(x => x.Name == meetingName);
+                meeting.EveryoneAnswered = true;
+                ctx.SaveChanges();
+            }
+
+            return RedirectToAction("Index", "Calendar");
         }
 
         public ActionResult SendInvite(MeetingIndexViewModel model, string[] invitedProfile)
@@ -86,6 +159,8 @@ namespace ScrumProject.Controllers
 
             return RedirectToAction("Index", "Calendar");
         }
+
+
 
     }
 }
