@@ -10,8 +10,8 @@
 
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
+/* Override the default bootstrap behavior where horizontal description lists
+   will truncate terms that are too long to fit in the left column
 */
 .dl-horizontal dt {
     white-space: normal;
@@ -67,7 +67,9 @@ textarea {
     background-color: #caffd0;
     padding: 2px 13px;
 }
-
+.CommentLabel {
+    color: white;
+    
 .calenderPage {
     width: 100%;
     display: flex;

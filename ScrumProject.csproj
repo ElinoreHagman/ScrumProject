@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InviteController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -318,6 +319,8 @@
     <Content Include="Views\Wall\FormalWall.cshtml" />
     <Content Include="Views\Home\NotApprovedPage.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\View.cshtml" />
+    <Content Include="Views\Comment\CreateComment.cshtml" />
     <Content Include="Views\Calendar\_MeetingForm.cshtml" />
     <Content Include="Views\Calendar\_InviteForm.cshtml" />
     <Content Include="Views\Profile\AdminSettings.cshtml" />
