@@ -1,0 +1,49 @@
+﻿@model ScrumProject.Models.InviteIndexViewModel
+
+    <h4>@TempData["accepted"]</h4>
+
+@foreach (var invite in @ViewBag.inviteInformation)
+{
+
+    using (Html.BeginForm("AnswerInvite", "Calendar", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal jumbotron meeting-form">
+            <h4>Godkänn möte</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <strong>Namn på mötet:</strong>
+                    <h4>@invite.MeetingName</h4>
+
+                    <strong>Möte hålls av:</strong>
+                    <h4>@invite.Creator</h4>
+                </div>
+            </div>
+
+            <strong>Datumförslag:</strong>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input name="IsChecked" type="radio" value="@invite.DateSuggestion1" /> @invite.DateSuggestion1
+                    <br />
+                    <input name="IsChecked" type="radio" value="@invite.DateSuggestion2" /> @invite.DateSuggestion2
+                    <br />
+                    <input name="IsChecked" type="radio" value="False" /> Tacka nej
+                    <br />
+                </div>
+
+                <input value=@invite.InviteId name="inviteId" type="hidden">
+                <input value=@invite.MeetingName name="meetingName" type="hidden">
+
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Svara på inbjudan" class="btn btn-info" style="margin: 5px 0 0 16px;" />
+            </div>
+
+        </div>
+    }
+}

@@ -9,11 +9,18 @@ namespace ScrumProject.Models
 {
     public class Invite
     {
+        public Invite()
+        {
+            Accepted = false;
+        }
+
         [Key]
         public int InviteID { get; set; }
 
         [Required]
         public string MeetingName { get; set; }
+
+        public DateTime? ChosenDate { get; set; }
 
         public bool Accepted { get; set; }
 
