@@ -1,0 +1,21 @@
+﻿@using ScrumProject.Models
+@model ProfileIndexViewModel
+
+<table>
+    @foreach (var profile in Model.Profiles)
+    {
+        <tr>
+            <td style="visibility:collapse;">@profile.ProfileID</td>
+            <td>@profile.Forename</td>
+            <td>@profile.Surname</td>
+            <td>@profile.Phonenumber</td>
+            <td>@profile.AdminRights</td>
+
+            <td>
+                @Html.ActionLink("Edit Admin Rights", "ChangeSettings", "Profile",
+                       new { id = profile.ProfileID },
+                       new { confirm = true, onclick = "return confirm('Do you want to change Admin Rights from this person?')" })
+            </td>
+        </tr>
+    }
+</table>

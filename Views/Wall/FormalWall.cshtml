@@ -4,6 +4,8 @@
     ViewBag.Title = "ListShowPost";
 }
 
+@Styles.Render("~/Content/Site.css")
+
 <h2>WALL - Formal posts</h2>
 
 <br />
@@ -54,15 +56,38 @@
 
                         </div>
                     }
+
                 }
+
                 <br />
                 @Html.ActionLink("Edit post", "EditPost", "Post", new { postId = @post.PostID }, null)
                 |
+                @Html.ActionLink("Comment Post", "CreateComment", "Comment", new { postId = @post.PostID }, null)
+                |
                 @Html.ActionLink("Delete post", "DeletePost", "Post",
-                new { id = post.PostID },
-                new { confirm = true, onclick = "return confirm('Do you want to delete this post?')" })
+                 new { id = post.PostID },
+                 new { confirm = true, onclick = "return confirm('Do you want to delete this post?')" })
 
             </div>
+        }
+
+        foreach (var comment in Model.Comments)
+        {
+
+            if
+                    (post.PublishedWall.Equals("Formell") && post.PostID == comment.PostID)
+            {
+                <div id="blogPost" class="bg-default" style="padding: 1px 5px 10px 10px; margin: 10px 0px; background-color: #BCC0D0;">
+
+                    <h4><b> Comments </b></h4>
+                    @Html.Label("Date: ", new { htmlAttributes = new { @class = "CommentLabel" } })
+                    }) @comment.Date
+                    <br />
+                    @comment.Text
+                    <br /><br />
+                </div>
+            }
+           
         }
     }
 </div>

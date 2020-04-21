@@ -7,10 +7,11 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
+/* Override the default bootstrap behavior where horizontal description lists
+   will truncate terms that are too long to fit in the left column
 */
 .dl-horizontal dt {
     white-space: normal;
@@ -35,21 +36,22 @@ textarea {
     background-color: #212440;
     padding: 10px 0;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     color: #dddddd;
 }
 
 .dateHolder h2 {
-    margin: auto;
+    margin: 0 auto;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 24px;
     padding-bottom: 5px;
 }
 
 .dateHolder h3 {
-    margin: auto;
+    margin: 0 auto;
     font-weight: normal;
-    font-size: 20px;
+    font-size: 19px;
 }
 
 .calendar-box-information {
@@ -62,6 +64,29 @@ textarea {
 }
 
 .calendar-box-information span {
-    background-color: #e1e1e1;
+    background-color: #caffd0;
     padding: 2px 13px;
+}
+.CommentLabel {
+    color: white;
+    
+.calenderPage {
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.calenderPage .jumbotron {
+    margin: 0 10px;
+    padding: 20px;
+    flex: 1;
+}
+
+.meeting-form {
+    min-width: 300px;
+}
+
+#invitedProfile {
+    min-height: 150px;
 }
