@@ -224,6 +224,10 @@
     <Compile Include="Migrations\202004182220124_addedCommentDatabase.Designer.cs">
       <DependentUpon>202004182220124_addedCommentDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004201303347_changedDateTime.cs" />
+    <Compile Include="Migrations\202004201303347_changedDateTime.Designer.cs">
+      <DependentUpon>202004201303347_changedDateTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
@@ -234,10 +238,12 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Invite.cs" />
     <Compile Include="Models\InviteIndexViewModel.cs" />
+    <Compile Include="Models\InviteModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\MeetingDateOptions.cs" />
     <Compile Include="Models\MeetingDateOptionsToInvite.cs" />
+    <Compile Include="Models\MeetingIndexViewModel.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostIndexViewModel.cs" />
@@ -315,6 +321,9 @@
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\View.cshtml" />
     <Content Include="Views\Comment\CreateComment.cshtml" />
+    <Content Include="Views\Calendar\_MeetingForm.cshtml" />
+    <Content Include="Views\Calendar\_InviteForm.cshtml" />
+    <Content Include="Views\Profile\AdminSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -366,6 +375,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004182220124_addedCommentDatabase.resx">
       <DependentUpon>202004182220124_addedCommentDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004201303347_changedDateTime.resx">
+      <DependentUpon>202004201303347_changedDateTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
