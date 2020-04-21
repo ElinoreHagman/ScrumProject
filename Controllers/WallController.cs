@@ -11,12 +11,8 @@ namespace ScrumProject.Controllers
 {
     public class WallController : Controller
     {
-        // GET: Wall
-        public ActionResult Index()
-        {
-            return View();
-        }
 
+        [Authorize]
         public ActionResult FormalWall()
         {
             var blogDB = new BlogDbContext();

@@ -56,7 +56,7 @@
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
-
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -239,6 +239,10 @@
     <Compile Include="Migrations\202004201303347_changedDateTime.Designer.cs">
       <DependentUpon>202004201303347_changedDateTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004212141135_changeStuff.cs" />
+    <Compile Include="Migrations\202004212141135_changeStuff.Designer.cs">
+      <DependentUpon>202004212141135_changeStuff.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
@@ -338,7 +342,7 @@
     <Content Include="Views\Calendar\_MeetingForm.cshtml" />
     <Content Include="Views\Calendar\_InviteForm.cshtml" />
     <Content Include="Views\Profile\AdminSettings.cshtml" />
-<Content Include="Views\Home\ChatView.cshtml" />
+    <Content Include="Views\Home\ChatView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -393,6 +397,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004201303347_changedDateTime.resx">
       <DependentUpon>202004201303347_changedDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004212141135_changeStuff.resx">
+      <DependentUpon>202004212141135_changeStuff.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

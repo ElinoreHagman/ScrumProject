@@ -10,7 +10,7 @@ namespace ScrumProject.Models
 {
     public class PostController : Controller
     {
-        // GET: Post
+        [Authorize]
         public ActionResult CreatePost()
         {
 
@@ -80,7 +80,7 @@ namespace ScrumProject.Models
 
         }
 
-
+        [Authorize]
         [HttpGet]
         public ActionResult EditPost(int postId)
         {

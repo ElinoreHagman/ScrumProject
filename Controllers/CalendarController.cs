@@ -10,7 +10,7 @@ namespace ScrumProject.Controllers
 {
     public class CalendarController : Controller
     {
-        // GET: Calendar
+        [Authorize]
         public ActionResult Index()
         {
             var ctx = new BlogDbContext();
@@ -37,11 +37,16 @@ namespace ScrumProject.Controllers
                 }
 
                 string meetingName = ctx.Invites.Where(x => x.InviteID == invite).Select(x => x.MeetingName).Single();
+                var meetingId = ctx.Invites.Where(x => x.InviteID == invite).Single();
+                var creatorFirstname = ctx.Profiles.Where(x => x.ProfileID == meetingId.ProfileID).Select(x => x.Forename).Single();
+                var creatorSurname = ctx.Profiles.Where(x => x.ProfileID == meetingId.ProfileID).Select(x => x.Surname).Single();
+
+                var creatorName = creatorFirstname + " " + creatorSurname;
 
                 var inviteTemplate = new InviteModel()
                 {
                     MeetingName = meetingName,
-                    Creator = ctx.Meetings.Where(x => x.Name == meetingName).Select(x => x.ProfileId).Single(),
+                    Creator = creatorName,
                     DateSuggestion1 = dateDetails[0],
                     DateSuggestion2 = dateDetails[1],
                     InviteId = invite
@@ -57,6 +62,11 @@ namespace ScrumProject.Controllers
 
         public ActionResult AnswerInvite(string IsChecked, string inviteId, string meetingName)
         {
+            if (IsChecked == null)
+            {
+                return RedirectToAction("Index", "Calendar");
+            }
+
             int inviteNumber = Int32.Parse(inviteId);
 
             var ctx = new BlogDbContext();
@@ -135,7 +145,8 @@ namespace ScrumProject.Controllers
                 {
                     MeetingName = model.MeetingName,
                     Accepted = false,
-                    ProfileID = person
+                    ProfileID = person,
+                    MeetingID = meeting.MeetingID
                 };
                 ctx.Invites.Add(invite);
                 ctx.SaveChanges();

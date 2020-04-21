@@ -30,5 +30,9 @@ namespace ScrumProject.Models
         public string ProfileID { get; set; }
         public Profile InviteReciever { get; set; }
 
+        [ForeignKey("AssignedToMeeting")]
+        public int MeetingID { get; set; }
+        public Meeting AssignedToMeeting { get; set; }
+
     }
 }

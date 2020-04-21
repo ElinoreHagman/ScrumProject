@@ -89,6 +89,7 @@ namespace ScrumProject.Controllers
                     {
                         case SignInStatus.Success:
                             return RedirectToLocal(returnUrl);
+                        //return RedirectToAction("FormalWall", "Wall");
                         case SignInStatus.LockedOut:
                             return View("Lockout");
                         case SignInStatus.RequiresVerification:

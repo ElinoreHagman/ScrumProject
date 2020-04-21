@@ -30,6 +30,8 @@ namespace ScrumProject.Models
         public string ProfileId { get; set; }
         public virtual Profile CreatorOfMeetings { get; set; }
 
+        public IList<Invite> AssignedToMeeting { get; set; }
+
     }
 
 }

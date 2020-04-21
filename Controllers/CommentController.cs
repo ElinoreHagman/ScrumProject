@@ -10,7 +10,7 @@ namespace ScrumProject.Controllers
 {
     public class CommentController : Controller
     {
-        // GET: Comment
+        [Authorize]
         public ActionResult CreateComment(int postId)
         {
 

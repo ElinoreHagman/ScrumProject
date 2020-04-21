@@ -30,6 +30,7 @@ namespace ScrumProject.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public ActionResult AdminSettings()
         {
             var ctx = new BlogDbContext();
