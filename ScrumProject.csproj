@@ -320,6 +320,7 @@
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Calendar\_MeetingForm.cshtml" />
     <Content Include="Views\Calendar\_InviteForm.cshtml" />
+    <Content Include="Views\Profile\AdminSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
