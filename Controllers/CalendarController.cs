@@ -20,6 +20,11 @@ namespace ScrumProject.Controllers
             viewmodel.Meetings = ctx.Meetings.Where(x => x.EveryoneAnswered == true).ToList();
 
             ViewBag.people = ctx.Profiles.ToList();
+            var user = User.Identity.GetUserId();
+            var invites = ctx.Invites.Where(x => x.ProfileID == user).ToList();
+            var InviteID = ctx.Invites.Where(x => x.ProfileID == user).Select(x => x.InviteID).Single();
+            var MeetingInviteIndex = ctx.MeetingDateOptionsToInvite.Where(x => x.InviteID == InviteID).Select(x => x.MeetingDateOptionID).Single();
+            ViewBag.date = ctx.MeetingOptions.Where(x => x.OptionID == MeetingInviteIndex);
 
             return View(viewmodel);
         }
@@ -81,5 +86,6 @@ namespace ScrumProject.Controllers
 
             return RedirectToAction("Index", "Calendar");
         }
+
     }
 }

@@ -1,0 +1,30 @@
+﻿@model ScrumProject.Models.InviteIndexViewModel
+
+@using (Html.BeginForm("SendInvite", "Calendar", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal jumbotron meeting-form">
+        <h4>Godkänn möte</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <strong>Namn på mötet:</strong>
+        <div class="form-group">
+            <div class="col-md-10">
+                <h2>@Model.MeetingName</h2>
+                <h2>@Model.MeetingCreator</h2>
+            </div>
+        </div>
+
+        <strong>Datumförslag :</strong>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input name="AreChecked" type="checkbox" value="@Model.DateSuggested" /> @Model.DateSuggested<br />
+                <input name="AreChecked" type="checkbox" value="@Model.DateSuggested2" /> @Model.DateSuggested2<br />
+            </div>
+        </div>
+
+    </div>
+
+}

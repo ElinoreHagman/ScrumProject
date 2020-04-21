@@ -1,45 +1,47 @@
 ﻿@using ScrumProject.Models
 @model CalendarIndexViewModel
 
+@Html.Partial("_InviteForm", new InviteIndexViewModel())
 
 <div class="calenderPage">
 
-<div class="jumbotron margin">
+    <div class="jumbotron margin">
 
-    @foreach (var meeting in Model.Meetings)
-    {
+        @foreach (var meeting in Model.Meetings)
+        {
 
-    <div class="calendar-box">
+            <div class="calendar-box">
 
-        <div class="dateHolder">
-            <h2>@meeting.MeetingDateTime.Value.Day/@meeting.MeetingDateTime.Value.Month</h2>
-            <h3>@meeting.MeetingDateTime.Value.ToString("hh:mm")</h3>
+                <div class="dateHolder">
+                    <h2>@meeting.MeetingDateTime.Value.Day/@meeting.MeetingDateTime.Value.Month</h2>
+                    <h3>@meeting.MeetingDateTime.Value.ToString("hh:mm")</h3>
 
-        </div>
-        <div class="calendar-box-information">
-            <h2>@meeting.Name</h2>
-            <h4>
-                Bokare: <span>@meeting.CreatorOfMeetings.Forename @meeting.CreatorOfMeetings.Surname</span>
-            </h4>
-            <h4>
-                Deltagare:
-                @foreach (var participants in Model.ProfilesToMeetings)
-                {
+                </div>
+                <div class="calendar-box-information">
+                    <h2>@meeting.Name</h2>
+                    <h4>
+                        Bokare: <span>@meeting.CreatorOfMeetings.Forename @meeting.CreatorOfMeetings.Surname</span>
+                    </h4>
+                    <h4>
+                        Deltagare:
+                        @foreach (var participants in Model.ProfilesToMeetings)
+                        {
 
-                    if (participants.MeetingID == meeting.MeetingID)
-                    {
-                        <span>@participants.Profile.Forename @participants.Profile.Surname</span>
-                    }
+                            if (participants.MeetingID == meeting.MeetingID)
+                            {
+                                <span>@participants.Profile.Forename @participants.Profile.Surname</span>
+                            }
 
-                }
-            </h4>
-        </div>
+                        }
+                    </h4>
+                </div>
+            </div>
+
+        }
+
     </div>
 
-    }
 
-</div>
-
-@Html.Partial("_MeetingForm", new MeetingIndexViewModel())
-
+    @Html.Partial("_MeetingForm", new MeetingIndexViewModel())
+  
 </div>
