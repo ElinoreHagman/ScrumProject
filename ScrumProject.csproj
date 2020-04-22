@@ -277,6 +277,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\DSC_0179.JPG" />
+    <Content Include="Files\NSwitch_ZeldaLinksAwakening_Char_Link_front.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -343,6 +345,7 @@
     <Content Include="Views\Calendar\_InviteForm.cshtml" />
     <Content Include="Views\Profile\AdminSettings.cshtml" />
     <Content Include="Views\Home\ChatView.cshtml" />
+    <Content Include="Views\Profile\AdminAccept.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

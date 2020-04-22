@@ -1,0 +1,20 @@
+﻿@using ScrumProject.Models
+
+<table>
+    @foreach (var user in (ViewBag.user as List<ScrumProject.Models.User>))
+    {
+        if(user.Approved == false) { 
+        <tr>
+            <td style="visibility:collapse;">@user.UserID</td>
+            <td>@user.Email</td>
+            <td>@user.Approved</td>
+
+            <td>
+                @Html.ActionLink("Accept account", "AcceptAccount", "Profile",
+                       new { id = user.UserID },
+                       new { confirm = true, onclick = "return confirm('Do you want to accept this profileaccount?')" })
+            </td>
+        </tr>
+        }
+    }
+</table>
