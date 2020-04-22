@@ -1,12 +1,14 @@
 ﻿@using ScrumProject.Models
 @model CalendarIndexViewModel
 
+@Html.Partial("_CreateMeeting")
 @Html.Partial("_InviteForm", new InviteIndexViewModel())
 
 <div class="calenderPage">
 
     <div class="jumbotron margin">
 
+       
         @foreach (var meeting in Model.Meetings)
         {
 
@@ -38,7 +40,7 @@
             </div>
 
         }
-
+        
     </div>
 
 
