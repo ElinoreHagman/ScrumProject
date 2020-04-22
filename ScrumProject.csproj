@@ -339,6 +339,8 @@
     <Content Include="Views\Wall\FormalWall.cshtml" />
     <Content Include="Views\Home\NotApprovedPage.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\Wall\InformalWall.cshtml" />
+    <Content Include="Views\Post\EditInformalPost.cshtml" />
     <Content Include="Views\View.cshtml" />
     <Content Include="Views\Comment\CreateComment.cshtml" />
     <Content Include="Views\Calendar\_MeetingForm.cshtml" />

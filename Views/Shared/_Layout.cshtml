@@ -22,7 +22,12 @@
                 @*@Html.ActionLink("Teacher plattform - Örebro University", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
-
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Create Post", "CreatePost", "Post")</li>
+                    <li>@Html.ActionLink("Formal Wall", "FormalWall", "Wall")</li>
+                    <li>@Html.ActionLink("Informal Wall", "InformalWall", "Wall")</li>
+                    <li>@Html.ActionLink("Calendar", "Index", "Calendar")</li>
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
