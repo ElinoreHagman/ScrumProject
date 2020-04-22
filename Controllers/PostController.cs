@@ -10,7 +10,7 @@ namespace ScrumProject.Models
 {
     public class PostController : Controller
     {
-        // GET: Post
+        [Authorize]
         public ActionResult CreatePost()
         {
 
@@ -29,6 +29,7 @@ namespace ScrumProject.Models
             var catId = ctx.Categories.FirstOrDefault(p => p.Name == dropdownMenu);
             var post = new Post
             {
+
                 Title = model.Title,
                 Content = model.Content,
                 PublishedWall = model.PublishedWall,
@@ -79,7 +80,7 @@ namespace ScrumProject.Models
 
         }
 
-
+        [Authorize]
         [HttpGet]
         public ActionResult EditPost(int postId)
         {

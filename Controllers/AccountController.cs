@@ -80,27 +80,33 @@ namespace ScrumProject.Controllers
             var user = new User();
 
             var isApproved = db.Users.FirstOrDefault(u => u.Email == model.Email);
-            if (isApproved.Approved)
-            {
-                var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-
-                switch (result)
+            if (isApproved != null) {
+                if (isApproved.Approved)
                 {
-                    case SignInStatus.Success:
-                        return RedirectToLocal(returnUrl);
-                    case SignInStatus.LockedOut:
-                        return View("Lockout");
-                    case SignInStatus.RequiresVerification:
-                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                    case SignInStatus.Failure:
-                    default:
-                        ModelState.AddModelError("", "Invalid login attempt.");
-                        return View(model);
-                }
-            }
-            TempData["message"] = "You haven't been approved as a user yet!";
-            return RedirectToAction("NotApprovedPage", "Home");
+                    var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
 
+                    switch (result)
+                    {
+                        case SignInStatus.Success:
+                            return RedirectToLocal(returnUrl);
+                        //return RedirectToAction("FormalWall", "Wall");
+                        case SignInStatus.LockedOut:
+                            return View("Lockout");
+                        case SignInStatus.RequiresVerification:
+                            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                        case SignInStatus.Failure:
+                        default:
+                            ModelState.AddModelError("", "Invalid login attempt.");
+                            return View(model);
+                    }
+                }
+                TempData["message"] = "You haven't been approved as a user yet!";
+                return RedirectToAction("NotApprovedPage", "Home");
+            } else
+            {
+                ModelState.AddModelError("", "Invalid login attempt.");
+                return View(model);
+            }
         }
 
         //
