@@ -1,0 +1,29 @@
+﻿
+@foreach (var meeting in ViewBag.meetingInfo)
+{
+
+    using (Html.BeginForm("DecideMeeting", "Calendar", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal jumbotron meeting-form">
+        <h4>Godkänn möte</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="col-md-10">
+            <strong>Namn på mötet:</strong>
+            <h4>@meeting.MeetingName</h4>
+
+            <strong>Möte hålls av:</strong>
+            <h4>@meeting.MeetingID</h4>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Boka möte" class="btn btn-info" style="margin: 5px 0 0 16px;" />
+        </div>
+
+    </div>
+    }
+
+}

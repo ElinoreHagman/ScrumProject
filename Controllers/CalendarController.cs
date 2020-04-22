@@ -16,7 +16,7 @@ namespace ScrumProject.Controllers
             var ctx = new BlogDbContext();
             var viewmodel = new CalendarIndexViewModel();
             viewmodel.ProfilesToMeetings = ctx.ProfilesToMeetings.ToList();
-            viewmodel.Meetings = ctx.Meetings.Where(x => x.EveryoneAnswered == true).ToList();
+            viewmodel.Meetings = ctx.Meetings.Where(x => x.EveryoneAnswered == true && x.MeetingDateTime != null).ToList();
             ViewBag.people = ctx.Profiles.ToList();
 
             var user = User.Identity.GetUserId();
@@ -56,6 +56,24 @@ namespace ScrumProject.Controllers
 
             }
 
+            var meetingInformation = ctx.Meetings.Where(x => x.ProfileId == user && x.EveryoneAnswered == true).ToList();
+
+            ViewBag.meetingInfo = new List<MeetingTemplate>();
+
+            foreach (var meeting in meetingInformation)
+            {
+                var invited = ctx.ProfilesToMeetings.Where(x => x.MeetingID == meeting.MeetingID).Select(x => x.Profile).ToList();
+
+                var meetingTemplate = new MeetingTemplate()
+                {
+                    MeetingName = meeting.Name,
+                    Participants = invited,
+                    MeetingID = meeting.MeetingID,
+                    
+                };
+
+                ViewBag.meetingInfo.Add(meetingTemplate);
+            }
 
             return View(viewmodel);
         }
@@ -80,6 +98,14 @@ namespace ScrumProject.Controllers
                 invite.Accepted = true;
                 ctx.SaveChanges();
                 TempData["accepted"] = "Du har skickat datumförslag för mötet!";
+
+                var user = User.Identity.GetUserId();
+                var profile = ctx.Profiles.FirstOrDefault(x => x.ProfileID == user);
+                var insertRelation = new ProfilesToMeetings();
+                insertRelation.MeetingID = invite.MeetingID;
+                insertRelation.Profile = profile;
+                ctx.ProfilesToMeetings.Add(insertRelation);
+                ctx.SaveChanges();
 
             } else
             {
@@ -169,6 +195,12 @@ namespace ScrumProject.Controllers
 
 
             return RedirectToAction("Index", "Calendar");
+        }
+
+        public ActionResult DecideMeeting ()
+        {
+
+            return View();
         }
 
 
