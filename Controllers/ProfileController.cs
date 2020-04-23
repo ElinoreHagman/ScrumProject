@@ -13,9 +13,7 @@ namespace ScrumProject.Controllers
         // GET: User
         public ActionResult Index()
         {
-
             var ctx = new BlogDbContext();
-            ViewBag.user = ctx.Users.ToList();
             var viewModel = new ProfileIndexViewModel
             {
                 Profiles = ctx.Profiles.ToList()
@@ -60,34 +58,6 @@ namespace ScrumProject.Controllers
             else
             {
                 EditRights.AdminRights = false;
-                blogDb.SaveChanges();
-            }
-            return RedirectToAction("Index");
-        }
-
-       
-        public ActionResult AdminAccept()
-        {
-            var ctx = new BlogDbContext();
-            ViewBag.user = ctx.Users.ToList();
-
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult AcceptAccount(string id)
-        {
-            var blogDb = new BlogDbContext();
-            var acceptUser = new User();
-            acceptUser = blogDb.Users.FirstOrDefault(u => u.UserID == id);
-            //var currentUser = User.Identity.GetUserId();
-            if (acceptUser.Approved == false)
-            {
-                acceptUser.Approved = true;
-                blogDb.SaveChanges();
-            }
-            else
-            {
-                acceptUser.Approved = false;
                 blogDb.SaveChanges();
             }
             return RedirectToAction("Index");
