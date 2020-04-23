@@ -243,6 +243,10 @@
     <Compile Include="Migrations\202004212141135_changeStuff.Designer.cs">
       <DependentUpon>202004212141135_changeStuff.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004231446415_WallSettings.cs" />
+    <Compile Include="Migrations\202004231446415_WallSettings.Designer.cs">
+      <DependentUpon>202004231446415_WallSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
@@ -344,6 +348,8 @@
     <Content Include="Views\Calendar\_InviteForm.cshtml" />
     <Content Include="Views\Profile\AdminSettings.cshtml" />
     <Content Include="Views\Home\ChatView.cshtml" />
+    <Content Include="Views\Profile\AdminAccept.cshtml" />
+    <Content Include="Views\Profile\WallSettings.cshtml" />
     <Content Include="Views\Calendar\_CreateMeeting.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -402,6 +408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004212141135_changeStuff.resx">
       <DependentUpon>202004212141135_changeStuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004231446415_WallSettings.resx">
+      <DependentUpon>202004231446415_WallSettings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
