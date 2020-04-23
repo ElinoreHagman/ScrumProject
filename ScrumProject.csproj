@@ -254,6 +254,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryIndexViewModel.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\EmailNotifyViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Invite.cs" />
     <Compile Include="Models\InviteIndexViewModel.cs" />
@@ -273,6 +274,11 @@
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EmailInfo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmailInfo.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -416,6 +422,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004231446415_WallSettings.resx">
       <DependentUpon>202004231446415_WallSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailInfo.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmailInfo.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
