@@ -243,6 +243,10 @@
     <Compile Include="Migrations\202004212141135_changeStuff.Designer.cs">
       <DependentUpon>202004212141135_changeStuff.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004231446415_WallSettings.cs" />
+    <Compile Include="Migrations\202004231446415_WallSettings.Designer.cs">
+      <DependentUpon>202004231446415_WallSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
@@ -259,6 +263,7 @@
     <Compile Include="Models\MeetingDateOptions.cs" />
     <Compile Include="Models\MeetingDateOptionsToInvite.cs" />
     <Compile Include="Models\MeetingIndexViewModel.cs" />
+    <Compile Include="Models\MeetingTemplate.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostIndexViewModel.cs" />
@@ -348,6 +353,9 @@
     <Content Include="Views\Profile\AdminSettings.cshtml" />
     <Content Include="Views\Home\ChatView.cshtml" />
     <Content Include="Views\Profile\AdminAccept.cshtml" />
+    <Content Include="Views\Profile\WallSettings.cshtml" />
+    <Content Include="Views\Calendar\_CreateMeeting.cshtml" />
+    <Content Include="Views\Profile\AdminAccept.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -405,6 +413,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004212141135_changeStuff.resx">
       <DependentUpon>202004212141135_changeStuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004231446415_WallSettings.resx">
+      <DependentUpon>202004231446415_WallSettings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

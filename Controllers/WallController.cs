@@ -47,6 +47,7 @@ namespace ScrumProject.Controllers
             return View("FormalWall", viewModel);
 
         }
+        [Authorize]
         public ActionResult InformalWall()
         {
             var blogDB = new BlogDbContext();
@@ -57,5 +58,6 @@ namespace ScrumProject.Controllers
             };
             return View(viewModel);
         }
+
     }
 }

@@ -26,3 +26,16 @@
     <br /><h2><b>Accept new registration request</b></h2>
     @Html.Partial("AdminAccept")
 </div>
+
+<hr />
+
+<h2>Change default wall</h2>
+<table>
+    <tr>
+        <td>
+            @Html.ActionLink("Edit default wall", "WallSettings", "Profile")
+        </td>
+    </tr>
+
+</table>
+@Html.Partial("AdminSettings")

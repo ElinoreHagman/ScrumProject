@@ -16,10 +16,11 @@ namespace ScrumProject.Controllers
             var ctx = new BlogDbContext();
             var viewmodel = new CalendarIndexViewModel();
             viewmodel.ProfilesToMeetings = ctx.ProfilesToMeetings.ToList();
-            viewmodel.Meetings = ctx.Meetings.Where(x => x.EveryoneAnswered == true).ToList();
-            ViewBag.people = ctx.Profiles.ToList();
-
+            viewmodel.Meetings = ctx.Meetings.Where(x => x.EveryoneAnswered == true && x.MeetingDateTime != null).ToList();
             var user = User.Identity.GetUserId();
+
+            ViewBag.people = ctx.Profiles.Where(x => x.ProfileID != user).ToList();
+
             var InviteIDs = ctx.Invites.Where(x => x.ProfileID == user && x.Accepted == false).Select(x => x.InviteID).ToList();
 
             ViewBag.inviteInformation = new List<InviteModel>();
@@ -38,8 +39,11 @@ namespace ScrumProject.Controllers
 
                 string meetingName = ctx.Invites.Where(x => x.InviteID == invite).Select(x => x.MeetingName).Single();
                 var meetingId = ctx.Invites.Where(x => x.InviteID == invite).Single();
-                var creatorFirstname = ctx.Profiles.Where(x => x.ProfileID == meetingId.ProfileID).Select(x => x.Forename).Single();
-                var creatorSurname = ctx.Profiles.Where(x => x.ProfileID == meetingId.ProfileID).Select(x => x.Surname).Single();
+
+                var meetingCreator = ctx.Meetings.FirstOrDefault(x => x.MeetingID == meetingId.MeetingID);
+
+                var creatorFirstname = ctx.Profiles.Where(x => x.ProfileID == meetingCreator.ProfileId).Select(x => x.Forename).Single();
+                var creatorSurname = ctx.Profiles.Where(x => x.ProfileID == meetingCreator.ProfileId).Select(x => x.Surname).Single();
 
                 var creatorName = creatorFirstname + " " + creatorSurname;
 
@@ -56,6 +60,56 @@ namespace ScrumProject.Controllers
 
             }
 
+            var meetingInformation = ctx.Meetings.Where(x => x.ProfileId == user && x.EveryoneAnswered == true && x.MeetingDateTime == null).ToList();
+
+            ViewBag.meetingInfo = new List<MeetingTemplate>();
+
+            foreach (var meeting in meetingInformation)
+            {
+                var invited = ctx.ProfilesToMeetings.Where(x => x.MeetingID == meeting.MeetingID).Select(x => x.Profile).ToList();
+                var meetingID = meeting.MeetingID;
+
+                var dates = (from dateNames in ctx.MeetingOptions
+                             join dateIDs in ctx.MeetingDateOptionsToInvite
+                             on dateNames.OptionID equals dateIDs.MeetingDateOptionID
+                             join invites in ctx.Invites
+                             on dateIDs.InviteID equals invites.InviteID
+                             where invites.MeetingID == meetingID
+                             select dateNames.Date).ToList();
+
+                if (dates.Count > 0)
+                {
+
+                    var date1 = dates[0];
+                    var date2 = dates[1];
+
+                    var date1Amount = ctx.Invites.Where(x => x.MeetingID == meeting.MeetingID && x.ChosenDate == date1).ToList();
+                    var date2Amount = ctx.Invites.Where(x => x.MeetingID == meeting.MeetingID && x.ChosenDate == date2).ToList();
+
+                    var meetingTemplate = new MeetingTemplate()
+                    {
+                        MeetingName = meeting.Name,
+                        Participants = invited,
+                        MeetingID = meeting.MeetingID,
+                        Date1 = dates[0],
+                        Date2 = dates[1],
+                        Date1Voters = date1Amount.Count,
+                        Date2Voters = date2Amount.Count,
+
+                    };
+
+                    ViewBag.meetingInfo.Add(meetingTemplate);
+
+                } else
+                {
+                    var meetingTemplate = new MeetingTemplate()
+                    {
+                        MeetingName = meeting.Name,
+
+                    };
+                    ViewBag.meetingInfo.Add(meetingTemplate);
+                }
+            }
 
             return View(viewmodel);
         }
@@ -80,6 +134,14 @@ namespace ScrumProject.Controllers
                 invite.Accepted = true;
                 ctx.SaveChanges();
                 TempData["accepted"] = "Du har skickat datumförslag för mötet!";
+
+                var user = User.Identity.GetUserId();
+                var profile = ctx.Profiles.FirstOrDefault(x => x.ProfileID == user);
+                var insertRelation = new ProfilesToMeetings();
+                insertRelation.MeetingID = invite.MeetingID;
+                insertRelation.Profile = profile;
+                ctx.ProfilesToMeetings.Add(insertRelation);
+                ctx.SaveChanges();
 
             } else
             {
@@ -171,7 +233,27 @@ namespace ScrumProject.Controllers
             return RedirectToAction("Index", "Calendar");
         }
 
+        public ActionResult DecideMeeting (DateTime IsChecked, int meetingId)
+        {
 
+            var ctx = new BlogDbContext();
+            var meeting = ctx.Meetings.FirstOrDefault(x => x.MeetingID == meetingId);
+            meeting.MeetingDateTime = IsChecked;
+            ctx.SaveChanges();
+
+            return RedirectToAction("Index", "Calendar");
+        }
+
+        public ActionResult DeleteOldMeeting(string meetingName)
+        {
+
+            var ctx = new BlogDbContext();
+            var meeting = ctx.Meetings.FirstOrDefault(x => x.Name == meetingName);
+            ctx.Meetings.Remove(meeting);
+            ctx.SaveChanges();
+
+            return RedirectToAction("Index", "Calendar");
+        }
 
     }
 }
