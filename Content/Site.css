@@ -153,3 +153,10 @@ textarea {
 #invitedProfile {
     min-height: 150px;
 }
+
+.meeting-form-nopadding {
+    padding: 0px !important;
+}
+.meeting-form-nopadding > div {
+    margin: 10px !important;
+}

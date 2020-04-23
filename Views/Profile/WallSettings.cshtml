@@ -1,0 +1,34 @@
+﻿<h2>Change default wall</h2>
+
+@using (Html.BeginForm("DefaultWallSettings", "Profile", FormMethod.Post))
+{
+<div>
+
+    @if (ViewBag.chosenWall == "InformalWall")
+    {
+        <div>
+            <input name="IsChecked" type="radio" value="FormalWall" /> Formal Wall
+            <input name="IsChecked" checked="checked" type="radio" value="InformalWall" /> Informal Wall
+        </div>
+    }
+    else if (ViewBag.chosenWall == "FormalWall")
+    {
+        <div>
+            <input name="IsChecked" checked="checked" type="radio" value="FormalWall" /> Formal Wall
+            <input name="IsChecked" type="radio" value="InformalWall" /> Informal Wall
+        </div>
+    }
+    else
+    {
+        <div>
+            <input name="IsChecked" type="radio" value="FormalWall" /> Formal Wall
+            <input name="IsChecked" type="radio" value="InformalWall" /> Informal Wall
+        </div>
+    }
+
+</div>
+
+    <div class="form-group">
+        <input type="submit" value="Change preferences" class="btn btn-info" style="margin: 5px 0 0 16px;" />
+    </div>
+}

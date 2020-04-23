@@ -13,9 +13,7 @@ namespace ScrumProject.Controllers
         // GET: User
         public ActionResult Index()
         {
-
             var ctx = new BlogDbContext();
-            ViewBag.user = ctx.Users.ToList();
             var viewModel = new ProfileIndexViewModel
             {
                 Profiles = ctx.Profiles.ToList()
@@ -65,7 +63,7 @@ namespace ScrumProject.Controllers
             return RedirectToAction("Index");
         }
 
-       
+
         public ActionResult AdminAccept()
         {
             var ctx = new BlogDbContext();
@@ -91,6 +89,45 @@ namespace ScrumProject.Controllers
                 blogDb.SaveChanges();
             }
             return RedirectToAction("Index");
+        }
+
+        public ActionResult DefaultWallSettings(string IsChecked)
+        {
+
+            var ctx = new BlogDbContext();
+            var user = User.Identity.GetUserId();
+            var settingsExist = ctx.Settings.FirstOrDefault(x => x.SettingsID == user);
+
+            if(settingsExist == null)
+            {
+                var settings = new Settings();
+                settings.SettingsID = user;
+                settings.ChosenWall = IsChecked;
+                ctx.Settings.Add(settings);
+            } else
+            {
+                settingsExist.ChosenWall = IsChecked;
+            }
+            ctx.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult WallSettings()
+        {
+
+            var ctx = new BlogDbContext();
+            var user = User.Identity.GetUserId();
+            var settingsExist = ctx.Settings.FirstOrDefault(x => x.SettingsID == user);
+
+            ViewBag.chosenWall = "None";
+
+            if (settingsExist != null)
+            {
+                ViewBag.chosenWall = settingsExist.ChosenWall;
+            }
+
+            return View();
         }
     }
 }

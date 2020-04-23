@@ -85,11 +85,21 @@ namespace ScrumProject.Controllers
                 {
                     var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
 
+                    var ctx = new BlogDbContext();
+                    var userId = isApproved.UserID;                    
+                    var preferences = ctx.Settings.FirstOrDefault(x => x.SettingsID == userId);
+                    string location = "InformalWall";
+
+                    if(preferences != null)
+                    {
+                        location = preferences.ChosenWall;
+                    }
+
                     switch (result)
                     {
                         case SignInStatus.Success:
-                            return RedirectToLocal(returnUrl);
-                        //return RedirectToAction("FormalWall", "Wall");
+                            //return RedirectToLocal(returnUrl);
+                            return RedirectToAction(location, "Wall");
                         case SignInStatus.LockedOut:
                             return View("Lockout");
                         case SignInStatus.RequiresVerification:
