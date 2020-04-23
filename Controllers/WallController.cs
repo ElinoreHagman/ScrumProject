@@ -47,5 +47,15 @@ namespace ScrumProject.Controllers
             return View("FormalWall", viewModel);
 
         }
+        public ActionResult InformalWall()
+        {
+            var blogDB = new BlogDbContext();
+            var viewModel = new PostIndexViewModel
+            {
+                Posts = blogDB.Posts.ToList(),
+                Categories = blogDB.Categories.ToList()
+            };
+            return View(viewModel);
+        }
     }
 }
