@@ -13,9 +13,7 @@ namespace ScrumProject.Controllers
 {
     public class EmailNotifyController : Controller
     {
-        #region Index view method.  
-
-        #region Get: /EmailNotify/Index method.  
+         
 
         /// Get: /EmailNotify/Index method.  
         /// Return index view
@@ -32,9 +30,7 @@ namespace ScrumProject.Controllers
             return this.View();
         }
 
-        #endregion
-
-        #region POST: /EmailNotify/Index  
+        
 
         /// <summary>  
         /// POST: /EmailNotify/Index  
@@ -52,33 +48,27 @@ namespace ScrumProject.Controllers
                 if (ModelState.IsValid)
                 {
                     // Initialization  
-                    string emailMsg = "Dear " + model.ToEmail + ", <br /><br /> A post has been made in "+ model.PostMadeIn + "<b style='color: blue'> Notification </b> <br /><br /> Thanks & Regards, <br />ORU Bloggsters";
+                    string emailMsg = "Dear " + model.ToEmail + ", <br /><br /> A post has been made in one of the categories you subscribe to!<b style='color: blue'> ORU Blog Notification </b> <br /><br /> Thanks & Regards, <br />ORU Bloggsters";
                     string emailSubject = EmailInfo.EMAIL_SUBJECT_DEFAULT + " Blog Notification";
 
                     // Sends Email  
                     await this.SendEmailAsync(model.ToEmail, emailMsg, emailSubject);
 
 
-                    return this.Json(new { EnableSuccess = true, SuccessTitle = "Success", SuccessMsg = "Notification has been sent successfully! to '" + model.ToEmail + "' Check your email." });
                 }
             }
             catch (Exception ex)
             {
                 Console.Write(ex);
 
-                return this.Json(new { EnableError = true, ErrorTitle = "Error", ErrorMsg = ex.Message });
             }
-
-            return this.Json(new { EnableError = true, ErrorTitle = "Error", ErrorMsg = "Something goes wrong, please try again later" });
+            return View();
+             
         }
 
-        #endregion
+        
 
-        #endregion
-
-        #region Helper  
-
-        #region Send Email method.  
+      
 
         /// <summary>  
         ///  Send Email method.  
@@ -131,9 +121,8 @@ namespace ScrumProject.Controllers
             // info.  
             return isSend;
         }
+        //public ActionResult NewPostNotify ()
 
-        #endregion
-
-        #endregion
+      
     }
 }
