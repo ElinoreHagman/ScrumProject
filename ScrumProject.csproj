@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -157,9 +160,6 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\EmailNotifyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InviteController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryIndexViewModel.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\EmailNotifyViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Invite.cs" />
     <Compile Include="Models\InviteIndexViewModel.cs" />
@@ -246,6 +248,11 @@
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EmailInfo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmailInfo.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -260,6 +267,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\custom-form.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -312,6 +320,7 @@
     <Content Include="Views\Wall\FormalWall.cshtml" />
     <Content Include="Views\Home\NotApprovedPage.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\EmailNotify\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -363,6 +372,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004182220124_addedCommentDatabase.resx">
       <DependentUpon>202004182220124_addedCommentDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailInfo.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmailInfo.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
