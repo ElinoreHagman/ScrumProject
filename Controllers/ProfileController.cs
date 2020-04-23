@@ -23,6 +23,18 @@ namespace ScrumProject.Controllers
             return View(viewModel);
         }
 
+        
+        public ActionResult AdminPage()
+        {
+            var ctx = new BlogDbContext();
+            ViewBag.user = ctx.Users.ToList();
+            var viewModel = new ProfileIndexViewModel
+            {
+                Profiles = ctx.Profiles.ToList()
+            };
+            return View(viewModel);
+        }
+
         public ActionResult AddProfile(Profile model)
         {
             var ctx = new BlogDbContext();

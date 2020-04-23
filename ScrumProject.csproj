@@ -359,6 +359,7 @@
     <Content Include="Views\Profile\AdminSettings.cshtml" />
     <Content Include="Views\Home\ChatView.cshtml" />
     <Content Include="Views\Profile\AdminAccept.cshtml" />
+    <Content Include="Views\Profile\AdminPage.cshtml" />
     <Content Include="Views\Profile\WallSettings.cshtml" />
     <Content Include="Views\Calendar\_CreateMeeting.cshtml" />
     <Content Include="Views\Profile\AdminAccept.cshtml" />

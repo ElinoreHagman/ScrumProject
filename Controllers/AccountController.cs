@@ -57,7 +57,9 @@ namespace ScrumProject.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            var ctx = new BlogDbContext();
             ViewBag.ReturnUrl = returnUrl;
+            
             return View();
         }
 
