@@ -47,6 +47,7 @@ namespace ScrumProject.Controllers
             return View("FormalWall", viewModel);
 
         }
+
         [Authorize]
         public ActionResult InformalWall()
         {

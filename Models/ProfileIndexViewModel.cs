@@ -8,6 +8,5 @@ namespace ScrumProject.Models
     public class ProfileIndexViewModel
     {
         public List<Profile> Profiles { get; set; }
-        
     }
 }

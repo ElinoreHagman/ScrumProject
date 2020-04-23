@@ -13,9 +13,7 @@ namespace ScrumProject.Controllers
         // GET: User
         public ActionResult Index()
         {
-
             var ctx = new BlogDbContext();
-            ViewBag.user = ctx.Users.ToList();
             var viewModel = new ProfileIndexViewModel
             {
                 Profiles = ctx.Profiles.ToList()
