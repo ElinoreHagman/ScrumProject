@@ -9,8 +9,6 @@ namespace ScrumProject.Models
     {
         public List<Meeting> Meetings { get; set; }
 
-        public List<Profile> Profiles { get; set; }
-
         public List<ProfilesToMeetings> ProfilesToMeetings { get; set; }
     }
 }
