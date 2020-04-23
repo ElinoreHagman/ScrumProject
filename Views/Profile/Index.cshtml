@@ -5,24 +5,15 @@
     @foreach (var profile in Model.Profiles)
     {
         <tr>
+            <td>@profile.ProfileID</td>
             <td>@profile.Forename</td>
             <td>@profile.Surname</td>
             <td>@profile.Phonenumber</td>
             <td>@profile.AdminRights</td>
-            <td style="visibility:collapse;">@profile.ProfileID</td>
         </tr>
     }
 </table>
 <hr />
 
 @Html.Partial("AddProfileForm", new Profile())
-
-<div id="AdminSettings" class="bg-default" style="padding: 1px 10px 20px 15px; margin: 10px 0px;">
-    <br /><h2><b>Set admin rights</b></h2>
-    @Html.Partial("AdminSettings")
-    </div>
-
-<div id="AdminAccept" class="bg-default" style="padding: 1px 10px 20px 15px; margin: 10px 0px;">
-    <br /><h2><b>Accept new registration request</b></h2>
-    @Html.Partial("AdminAccept")
-</div>
+@Html.Partial("AdminSettings")
