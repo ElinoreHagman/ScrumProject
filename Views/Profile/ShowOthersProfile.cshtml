@@ -1,0 +1,30 @@
+﻿@using ScrumProject.Models
+@using Microsoft.AspNet.Identity;
+@model ProfileIndexViewModel
+
+
+
+<div class="flex">
+
+    @foreach (var profile in Model.Profiles)
+    {
+        //if (profile.ProfileID.Equals())
+        //{
+
+            <div id="profile" class="bg-default" style="padding: 1px 10px 20px 15px; margin: 10px 0px;">
+                <h3>
+                    Profile
+                </h3>
+
+                @Html.Label("Forename: ") @profile.Forename
+                <br />
+                @Html.Label("Surname: ") @profile.Surname
+                <br />
+                @Html.Label("Phone number: ") @profile.Phonenumber
+
+            </div>
+        @*}*@
+
+    }
+
+</div>

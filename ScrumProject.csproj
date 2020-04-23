@@ -320,6 +320,7 @@
     <Content Include="Views\Profile\ShowProfile.cshtml" />
     <Content Include="Views\Profile\SelectCategory.cshtml" />
     <Content Include="Views\Profile\EditPhoneNumber.cshtml" />
+    <Content Include="Views\Profile\ShowOthersProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

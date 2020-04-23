@@ -2,9 +2,6 @@
 @using Microsoft.AspNet.Identity;
 @model ProfileIndexViewModel
 
-@{
-    ViewBag.Title = "SelectProfile";
-}
 
 <div class="flex">
 
@@ -59,28 +56,12 @@
 <div id="other profiles" class="bg-default" style="padding: 1px 10px 20px 15px; margin: 10px 0px;">
 
     <h3>
-        See other profiles
+        See profiles
     </h3>
-
-    @using (Html.BeginForm("SelectProfile", "Profile", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-        <br />
-        @Html.LabelFor(model => model.Profiles, htmlAttributes: new { @class = "control-label col-md-2" })
-
-        <div class="col-md-10">
-            <h2>Select a profile </h2>
-
-            <select id="dropdownMenu" name="dropdownMenu" class="form-control" style="margin-bottom: 5px;">
-                <option value="0">Choose a profile</option>
-                @*@foreach (var profile in (ViewBag.profiles as List<ScrumProject.Models.Profile>))
-                {
-                    <option value="@profile.Forename">@profile.Forename</option>
-                }*@
-            </select>
-            <input type="submit" value="Select" class="btn btn-xs btn-primary" />
-        </div>
-    }
+    <h4>
+        Here you can see the profiles of you colleagues.
+    </h4>
+    @Html.ActionLink("Click here", "ShowOthersProfile", "Profile")
 
 </div>
 
