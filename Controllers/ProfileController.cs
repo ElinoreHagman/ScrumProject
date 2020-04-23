@@ -92,5 +92,18 @@ namespace ScrumProject.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public ActionResult DefaultWallSettings()
+        {
+            var ctx = new BlogDbContext();
+            var viewModel = new ProfileIndexViewModel
+            {
+                Profiles = ctx.Profiles.ToList()
+            };
+            ////ctx.Profiles.Add(model);
+            //ctx.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }
