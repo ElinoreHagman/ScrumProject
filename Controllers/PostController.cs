@@ -43,7 +43,7 @@ namespace ScrumProject.Models
                 try
                 {
                     var checkextension = Path.GetExtension(FilePath.FileName).ToLower();
-                    if (checkextension.ToLower().Contains(".jpg") || checkextension.ToLower().Contains(".jpeg") || checkextension.Contains(".png") || checkextension.Contains(".pdf"))
+                    if (checkextension.ToLower().Contains(".jpg") || checkextension.ToLower().Contains(".jpeg") || checkextension.Contains(".png") || checkextension.Contains(".pdf") || checkextension.Contains(".xlsx") || checkextension.Contains(".docx"))
                     {
                         // path skapar sökväg för att lägga in bilden i projektmappen Images
                         string path = System.IO.Path.Combine(Server.MapPath("~/Files"), System.IO.Path.GetFileName(FilePath.FileName));
@@ -59,7 +59,7 @@ namespace ScrumProject.Models
 
                     else
                     {
-                        ViewBag.FileStatus = "Only .JPEG and .PNG allowed";
+                        ViewBag.FileStatus = "Only .JPEG, .PFD, .DOCX, .XLSX and .PNG allowed";
                     }
 
 
@@ -166,6 +166,15 @@ namespace ScrumProject.Models
 
 
             return RedirectToAction("InformalWall", "Wall");
+
+        }
+
+        public ActionResult DownloadFile(string filepath)
+        {
+            var absolutePath = Server.MapPath(filepath);
+            var fileSufix = Path.GetExtension(absolutePath);
+            byte[] fileBytes = System.IO.File.ReadAllBytes(absolutePath);
+            return File(fileBytes, "application/force-download", "downloadedContent"+fileSufix);
 
         }
     }
