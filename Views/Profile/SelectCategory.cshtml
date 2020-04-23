@@ -5,7 +5,7 @@
     ViewBag.Title = "SelectCategory";
 }
 
-@using (Html.BeginForm("ShowCategory", "Profile", FormMethod.Post))
+@using (Html.BeginForm("SelectCategory", "Profile", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <br />
@@ -14,7 +14,7 @@
 
         <div class="form-group">
 
-            @Html.LabelFor(model => model.Categories, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ChosenCategory, htmlAttributes: new { @class = "control-label col-md-2" })
 
             <div class="col-md-10">
                 <h2>Select a category </h2>
@@ -32,3 +32,6 @@
         </div>
     </div>
 }
+
+}
+

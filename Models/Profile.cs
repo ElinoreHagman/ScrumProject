@@ -23,6 +23,9 @@ namespace ScrumProject.Models
         public bool AdminRights { get; set; }
 
         public IList<Post> AuthorOfPosts { get; set; }
+
+        public IList<ChosenCategories> GetNotificationsOn { get; set; }
+
         public IList<Comment> AuthorOfComments { get; set; }
 
         public IList<Message> AuthorOfMessages { get; set; }

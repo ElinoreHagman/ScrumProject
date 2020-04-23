@@ -22,6 +22,7 @@ namespace ScrumProject.Models
         public DbSet<MeetingDateOptionsToInvite> MeetingDateOptionsToInvite { get; set; }
         public DbSet<ProfilesToMeetings> ProfilesToMeetings { get; set; }
 
+        public DbSet<ChosenCategories> SelectedCategories { get; set; }
 
         public BlogDbContext() : base("BlogDb") { }
     }

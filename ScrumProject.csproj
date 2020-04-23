@@ -223,6 +223,10 @@
     <Compile Include="Migrations\202004182220124_addedCommentDatabase.Designer.cs">
       <DependentUpon>202004182220124_addedCommentDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004230915183_AddedNewTable.cs" />
+    <Compile Include="Migrations\202004230915183_AddedNewTable.Designer.cs">
+      <DependentUpon>202004230915183_AddedNewTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
@@ -242,6 +246,7 @@
     <Compile Include="Models\PostIndexViewModel.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\ProfileIndexViewModel.cs" />
+    <Compile Include="Models\ChosenCategories.cs" />
     <Compile Include="Models\ProfilesToMeetings.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\User.cs" />
@@ -366,6 +371,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004182220124_addedCommentDatabase.resx">
       <DependentUpon>202004182220124_addedCommentDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004230915183_AddedNewTable.resx">
+      <DependentUpon>202004230915183_AddedNewTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

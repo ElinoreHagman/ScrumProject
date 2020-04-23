@@ -10,5 +10,7 @@ namespace ScrumProject.Models
         public List<Profile> Profiles { get; set; }
 
         public List<Category> Categories { get; set; }
+
+        public List<ChosenCategories> ChosenCategory { get; set; }
     }
 }

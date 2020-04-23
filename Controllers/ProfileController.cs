@@ -35,7 +35,8 @@ namespace ScrumProject.Controllers
             var ctx = new BlogDbContext();
             var viewModel = new ProfileIndexViewModel
             {
-                Profiles = ctx.Profiles.ToList()
+                Profiles = ctx.Profiles.ToList(),
+                ChosenCategory = ctx.SelectedCategories.ToList()
             };
             return View(viewModel);
         }
@@ -68,16 +69,53 @@ namespace ScrumProject.Controllers
             return RedirectToAction("ShowProfile", "Profile");
         }
 
-
-        [HttpGet]
         public ActionResult SelectCategory()
         {
             var ctx = new BlogDbContext();
-            var myList = ctx.Categories.ToList();
-            ViewBag.categories = myList;
+            var myList = ctx.SelectedCategories.ToList();
+            ViewBag.SelectedCategories = myList;
+            var mySecondList = ctx.Categories.ToList();
+            ViewBag.categories = mySecondList;
+            var viewModel = new ProfileIndexViewModel
+            {
+                ChosenCategory = ctx.SelectedCategories.ToList()
+            };
+            return View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult SelectCategory(ChosenCategories model, string dropdownMenu)
+        {
+            var ctx = new BlogDbContext();
+            var mySecondList = ctx.Categories.ToList();
+            ViewBag.categories = mySecondList;
+            //var chosenCategoryList = ctx.SelectedCategories.ToList();
+            var catName = ctx.Categories.FirstOrDefault(p => p.Name == dropdownMenu);
+            var userId = User.Identity.GetUserId();
+            var chosenCategories = new ChosenCategories
+            {
+                //ChosenCategoryID = model.ChosenCategoryID,
+                Name = catName.Name,
+                ProfileID = userId,
+            };
+
+            
+
+            ctx.SelectedCategories.Add(chosenCategories);
+            ctx.SaveChanges();
+            return View();
+
+            //return RedirectToAction("ShowProfile", "Profile");
+        }
+
+        [HttpGet]
+        public ActionResult SelectProfile()
+        {
+            var ctx = new BlogDbContext();
+            var myList = ctx.Profiles.ToList();
+            ViewBag.profiles = myList;
+
 
             return View();
         }
-
     }
 }
