@@ -125,5 +125,48 @@ namespace ScrumProject.Models
             return RedirectToAction("FormalWall", "Wall");
 
         }
+
+        public ActionResult EditInformalPost(int postId)
+        {
+            var blogDB = new BlogDbContext();
+            var showPost = new Post();
+            showPost = blogDB.Posts.FirstOrDefault(u => u.PostID == postId);
+
+            return View(showPost);
+
+        }
+
+        [HttpPost]
+        public ActionResult EditInformalPost(Post model)
+        {
+
+            var blogDb = new BlogDbContext();
+            var editedPost = new Post();
+            editedPost = blogDb.Posts.FirstOrDefault(u => u.PostID == model.PostID);
+
+            editedPost.Title = model.Title;
+            editedPost.Content = model.Content;
+            //editedPost.CategoryID = model.CategoryID;
+            editedPost.PostDateTime = DateTime.Now;
+            blogDb.SaveChanges();
+
+            return RedirectToAction("InformalWall", "Wall");
+
+        }
+
+        public ActionResult DeleteInformalPost(int id)
+        {
+
+            var blogDb = new BlogDbContext();
+
+            var postObject = blogDb.Posts.FirstOrDefault(x => x.PostID == id);
+
+            blogDb.Posts.Remove(postObject);
+            blogDb.SaveChanges();
+
+
+            return RedirectToAction("InformalWall", "Wall");
+
+        }
     }
 }
