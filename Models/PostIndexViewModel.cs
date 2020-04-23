@@ -11,6 +11,7 @@ namespace ScrumProject.Models
 
         public List<Category> Categories { get; set; }
 
+        public List<Profile> Profiles { get; set; }
         public List<Comment> Comments { get; set; }
     }
 }

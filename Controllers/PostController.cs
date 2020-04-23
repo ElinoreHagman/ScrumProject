@@ -29,7 +29,9 @@ namespace ScrumProject.Models
         {
 
             var ctx = new BlogDbContext();
+            var user = User.Identity.GetUserId();
             var catId = ctx.Categories.FirstOrDefault(p => p.Name == dropdownMenu);
+            var author = ctx.Profiles.FirstOrDefault(p => p.ProfileID == user);
             var post = new Post
             {
 
@@ -37,7 +39,8 @@ namespace ScrumProject.Models
                 Content = model.Content,
                 PublishedWall = model.PublishedWall,
                 PostDateTime = DateTime.Now,
-                Category = catId
+                Category = catId,
+                AuthorOfPosts = author
             };
 
             if (FilePath != null)

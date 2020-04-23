@@ -25,12 +25,14 @@ namespace ScrumProject.Controllers
         {
 
             var blogDb = new BlogDbContext();
-            //var commentedPost = blogDb.Posts.FirstOrDefault(u => u.PostID == post.PostID);
+            var user = User.Identity.GetUserId();
+            var author = blogDb.Profiles.FirstOrDefault(u => u.ProfileID == user);
             var comment = new Comment
             {
                 Text = model.Text,
                 Date = DateTime.Now,
-                ProfileID = User.Identity.GetUserId(),
+                AuthorOfComments = author,
+                ProfileID = user,
                 PostID = Convert.ToInt32(Session["postId"]),
             };
             
@@ -38,7 +40,7 @@ namespace ScrumProject.Controllers
             blogDb.SaveChanges();
 
 
-            return View();
+            return RedirectToAction("InformalWall", "Wall");
 
         }
     }

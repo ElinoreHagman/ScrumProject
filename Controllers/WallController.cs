@@ -15,9 +15,12 @@ namespace ScrumProject.Controllers
         [Authorize]
         public ActionResult FormalWall()
         {
+            ViewBag.loggedInUser = User.Identity.GetUserId();
+
             var blogDB = new BlogDbContext();
             var viewModel = new PostIndexViewModel
             {
+                Profiles = blogDB.Profiles.ToList(),
                 Posts = blogDB.Posts.ToList(),
                 Categories = blogDB.Categories.ToList(),
                 Comments = blogDB.Comments.ToList()
@@ -50,9 +53,12 @@ namespace ScrumProject.Controllers
         [Authorize]
         public ActionResult InformalWall()
         {
+            ViewBag.loggedInUser = User.Identity.GetUserId();
+
             var blogDB = new BlogDbContext();
             var viewModel = new PostIndexViewModel
             {
+                Profiles = blogDB.Profiles.ToList(),
                 Posts = blogDB.Posts.ToList(),
                 Categories = blogDB.Categories.ToList()
             };
