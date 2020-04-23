@@ -348,6 +348,7 @@
     <Content Include="Views\Profile\AdminSettings.cshtml" />
     <Content Include="Views\Home\ChatView.cshtml" />
     <Content Include="Views\Profile\AdminAccept.cshtml" />
+    <Content Include="Views\Profile\AdminPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
