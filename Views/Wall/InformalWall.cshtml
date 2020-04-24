@@ -27,7 +27,7 @@
 
         @if (post.FilePath != null)
         {
-            if (post.FilePath.Contains("png") || post.FilePath.Contains("jpg") || post.FilePath.Contains("jpeg"))
+            if (post.FilePath.Contains("png") || post.FilePath.Contains("jpg") || post.FilePath.Contains("jpeg") || post.FilePath.Contains("JPG"))
             {
                 <div>
                     <img src="@Url.Content(post.FilePath)" width="300" style="margin: 10px 0px;" />

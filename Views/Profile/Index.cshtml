@@ -2,46 +2,56 @@
 @using Microsoft.AspNet.Identity;
 @model ProfileIndexViewModel
 
-<table>
-    @foreach (var profile in Model.Profiles)
+
+@foreach (var profile in Model.Profiles)
+{
+    if (profile.ProfileID.Equals(User.Identity.GetUserId()))
     {
-        <tr>
-            <td>@profile.Forename</td>
-            <td>@profile.Surname</td>
-            <td>@profile.Phonenumber</td>
-            <td>@profile.AdminRights</td>
-            <td style="visibility:collapse;">@profile.ProfileID</td>
-        </tr>
+
+        <div id="Profildata" class="bg-default" style="padding: 1px 10px 20px 15px; margin: 10px 0px;">
+
+            <h1><b> Your Profile </b></h1>
+            <div id=" ProfilInfo" style="font-size: 20px" ;>
+                @Html.Label("Firstname: ") @profile.Forename
+                <br />
+                @Html.Label("Lastname: ") @profile.Surname
+                <br />
+                @Html.Label("Phonenumber: ") @profile.Phonenumber
+                <br />
+                @Html.Label("Admin: ") @profile.AdminRights
+                <br />
+                <div style="visibility:collapse;">
+                    @profile.ProfileID
+                </div>
+            </div>
+
+        </div>
     }
-</table>
-<hr />
+}
 
-@Html.Partial("AddProfileForm", new Profile())
+@*<div id="AdminAccept" class="bg-default" style="padding: 1px 10px 20px 15px; margin: 10px 0px;">
+        <br /><h2><b>Accept new registration request</b></h2>
+        @Html.Partial("AdminAccept")
+    </div>
 
+    <hr />*@
 
-<div id="AdminAccept" class="bg-default" style="padding: 1px 10px 20px 15px; margin: 10px 0px;">
-    <br /><h2><b>Accept new registration request</b></h2>
-    @Html.Partial("AdminAccept")
+<div id="EditDefaultWall" class="bg-default" style="padding: 1px 10px 20px 15px; margin: 10px 0px; font-size: 20px; color:">
+    <br /><h2><b>Edit your default wall</b></h2>
+    @Html.ActionLink("Edit default wall", "WallSettings", "Profile")
 </div>
-
-<hr />
-
-<h2>Change default wall</h2>
-<table>
-    <tr>
-        <td>
-            @Html.ActionLink("Edit default wall", "WallSettings", "Profile")
-        </td>
-    </tr>
-
-</table>
 
 
 @foreach (var admin in (ViewBag.admin as List<ScrumProject.Models.Profile>))
 {
     if (admin.ProfileID.Equals(User.Identity.GetUserId()) && admin.AdminRights == true)
     {
-
-        <li>@Html.ActionLink("Admin settings", "AdminPage", "Profile")</li>
+        <div id="AdminSettings" class="bg-default" style="padding: 1px 10px 20px 15px; margin: 10px 0px; font-size: 20px; color:">
+            <br /><h2><b>Admin settings</b></h2>
+            
+            @Html.ActionLink("Admin settings", "AdminPage", "Profile")
+        </div>
     }
 }
+
+@Html.Partial("AddProfileForm", new Profile())
