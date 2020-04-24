@@ -1,16 +1,80 @@
-﻿body {
+﻿html {
+    height: 100%;
+    min-height: 100% !important;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+}
+
+.center-form {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.form-register {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.81);
+    padding: 30px;
+}
+
+.form-register .control-label {
+    width: auto !important;
+}
+
+.jumbotron {
+    margin-top: 50px;
+}
+
+#loginForm .control-label {
+    width: auto !important;
+}
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.81);
+}
+
+.front-logo {
+    display: block;
+    width: 30%;
+    margin: auto;
+}
+
+.front-page {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.81);
+    padding: 20px 20px;
+    height: 80%;
+    display: flex;
+}
+
+.first-page-content {
+    margin: auto;
+    height: auto;
+}
+
+.first-page-content .btn {
+    margin: 5px;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
+/* Override the default bootstrap behavior where horizontal description lists
+   will truncate terms that are too long to fit in the left column
 */
 .dl-horizontal dt {
     white-space: normal;
@@ -35,21 +99,22 @@ textarea {
     background-color: #212440;
     padding: 10px 0;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     color: #dddddd;
 }
 
 .dateHolder h2 {
-    margin: auto;
+    margin: 0 auto;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 24px;
     padding-bottom: 5px;
 }
 
 .dateHolder h3 {
-    margin: auto;
+    margin: 0 auto;
     font-weight: normal;
-    font-size: 20px;
+    font-size: 19px;
 }
 
 .calendar-box-information {
@@ -62,6 +127,36 @@ textarea {
 }
 
 .calendar-box-information span {
-    background-color: #e1e1e1;
+    background-color: #caffd0;
     padding: 2px 13px;
+}
+.CommentLabel {
+    color: white;
+}
+.calenderPage {
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.calenderPage .jumbotron {
+    margin: 0 10px;
+    padding: 20px;
+    flex: 1;
+}
+
+.meeting-form {
+    min-width: 300px;
+}
+
+#invitedProfile {
+    min-height: 150px;
+}
+
+.meeting-form-nopadding {
+    padding: 0px !important;
+}
+.meeting-form-nopadding > div {
+    margin: 10px !important;
 }

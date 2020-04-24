@@ -45,10 +45,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.SignalR.Client.2.4.1\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.SignalR.Core.2.4.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -157,9 +170,6 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -167,9 +177,11 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="ChatHub.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InviteController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -226,6 +238,17 @@
     <Compile Include="Migrations\202004230915183_AddedNewTable.cs" />
     <Compile Include="Migrations\202004230915183_AddedNewTable.Designer.cs">
       <DependentUpon>202004230915183_AddedNewTable.cs</DependentUpon>
+    <Compile Include="Migrations\202004201303347_changedDateTime.cs" />
+    <Compile Include="Migrations\202004201303347_changedDateTime.Designer.cs">
+      <DependentUpon>202004201303347_changedDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004212141135_changeStuff.cs" />
+    <Compile Include="Migrations\202004212141135_changeStuff.Designer.cs">
+      <DependentUpon>202004212141135_changeStuff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004231446415_WallSettings.cs" />
+    <Compile Include="Migrations\202004231446415_WallSettings.Designer.cs">
+      <DependentUpon>202004231446415_WallSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -234,13 +257,17 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryIndexViewModel.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\EmailNotifyViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Invite.cs" />
     <Compile Include="Models\InviteIndexViewModel.cs" />
+    <Compile Include="Models\InviteModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\MeetingDateOptions.cs" />
     <Compile Include="Models\MeetingDateOptionsToInvite.cs" />
+    <Compile Include="Models\MeetingIndexViewModel.cs" />
+    <Compile Include="Models\MeetingTemplate.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostIndexViewModel.cs" />
@@ -251,14 +278,22 @@
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EmailInfo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmailInfo.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\DSC_0179.JPG" />
+    <Content Include="Files\NSwitch_ZeldaLinksAwakening_Char_Link_front.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -270,6 +305,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.1.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -321,6 +358,19 @@
     <Content Include="Views\Profile\SelectCategory.cshtml" />
     <Content Include="Views\Profile\EditPhoneNumber.cshtml" />
     <Content Include="Views\Profile\ShowOthersProfile.cshtml" />
+    <Content Include="Views\Wall\InformalWall.cshtml" />
+    <Content Include="Views\Post\EditInformalPost.cshtml" />
+    <Content Include="Views\View.cshtml" />
+    <Content Include="Views\Comment\CreateComment.cshtml" />
+    <Content Include="Views\Calendar\_MeetingForm.cshtml" />
+    <Content Include="Views\Calendar\_InviteForm.cshtml" />
+    <Content Include="Views\Profile\AdminSettings.cshtml" />
+    <Content Include="Views\Home\ChatView.cshtml" />
+    <Content Include="Views\Profile\AdminAccept.cshtml" />
+    <Content Include="Views\Profile\AdminPage.cshtml" />
+    <Content Include="Views\Profile\WallSettings.cshtml" />
+    <Content Include="Views\Calendar\_CreateMeeting.cshtml" />
+    <Content Include="Views\Profile\AdminAccept.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -375,6 +425,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004230915183_AddedNewTable.resx">
       <DependentUpon>202004230915183_AddedNewTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004201303347_changedDateTime.resx">
+      <DependentUpon>202004201303347_changedDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004212141135_changeStuff.resx">
+      <DependentUpon>202004212141135_changeStuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004231446415_WallSettings.resx">
+      <DependentUpon>202004231446415_WallSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailInfo.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmailInfo.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

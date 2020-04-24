@@ -37,4 +37,4 @@ namespace ScrumProject.Models
         public IList<Meeting> CreatorOfMeetings { get; set; }
         public virtual Settings Settings { get; set; }
     }
-}
+} 
