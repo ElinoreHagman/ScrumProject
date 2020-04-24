@@ -11,6 +11,7 @@ namespace ScrumProject.Controllers
     public class ProfileController : Controller
     {
         // GET: User
+        [Authorize]
         public ActionResult Index()
         {
 
@@ -23,7 +24,7 @@ namespace ScrumProject.Controllers
             return View(viewModel);
         }
 
-        
+        [Authorize]
         public ActionResult AdminPage()
         {
             var ctx = new BlogDbContext();
@@ -35,6 +36,7 @@ namespace ScrumProject.Controllers
             return View(viewModel);
         }
 
+        [Authorize]
         public ActionResult ShowProfile()
         {
             var ctx = new BlogDbContext();
