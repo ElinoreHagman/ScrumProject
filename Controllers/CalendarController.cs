@@ -16,7 +16,7 @@ namespace ScrumProject.Controllers
             var ctx = new BlogDbContext();
             var viewmodel = new CalendarIndexViewModel();
             viewmodel.ProfilesToMeetings = ctx.ProfilesToMeetings.ToList();
-            viewmodel.Meetings = ctx.Meetings.Where(x => x.EveryoneAnswered == true && x.MeetingDateTime != null).ToList();
+            viewmodel.Meetings = ctx.Meetings.Where(x => x.EveryoneAnswered == true && x.MeetingDateTime != null).OrderBy(x => x.MeetingDateTime).ToList();
             var user = User.Identity.GetUserId();
 
             ViewBag.people = ctx.Profiles.Where(x => x.ProfileID != user).ToList();

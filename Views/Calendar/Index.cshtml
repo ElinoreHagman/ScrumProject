@@ -8,7 +8,6 @@
 
     <div class="calendar">
 
-       
         @foreach (var meeting in Model.Meetings)
         {
 
@@ -16,9 +15,10 @@
 
                 <div class="dateHolder">
                     <h2>@meeting.MeetingDateTime.Value.Day/@meeting.MeetingDateTime.Value.Month</h2>
-                    <h3>@meeting.MeetingDateTime.Value.ToString("HH:mm")</h3> 
+                    <h3>@meeting.MeetingDateTime.Value.ToString("HH:mm")</h3>
 
                 </div>
+
                 <div class="calendar-box-information">
                     <h2>@meeting.Name</h2>
                     <h4>
@@ -40,7 +40,7 @@
             </div>
 
         }
-        
+
     </div>
 
 

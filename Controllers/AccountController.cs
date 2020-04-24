@@ -97,6 +97,9 @@ namespace ScrumProject.Controllers
                         location = preferences.ChosenWall;
                     }
 
+                    var loggedIn = ctx.Profiles.FirstOrDefault(x => x.ProfileID == userId);
+                    Session["loggedInUser"] = loggedIn.Forename + " " + loggedIn.Surname;
+
                     switch (result)
                     {
                         case SignInStatus.Success:

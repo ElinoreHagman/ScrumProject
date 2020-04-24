@@ -6,7 +6,6 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
-    margin-top: 20px;
 }
 
 .center-form {
@@ -98,7 +97,7 @@ textarea {
 
 .dateHolder {
     height: auto;
-    width: 100px;
+    min-width: 100px;
     background-color: #212440;
     padding: 10px 0;
     display: flex;
