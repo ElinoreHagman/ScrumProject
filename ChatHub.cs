@@ -25,8 +25,8 @@ namespace ScrumProject
         public void send(string message)
         {
             var datum = DateTime.UtcNow;
-            Clients.Caller.message("You: " + message + "   " + "Date: " + datum);
-            Clients.Others.message(Context.User.Identity.Name + ": " + " " + message + datum); 
+            Clients.Caller.message("<strong>You</strong> <i>(" + datum + ")</i> <br />" + message + "<hr />");
+            Clients.Others.message("<strong>" + Context.User.Identity.Name + "</strong><i> (" + datum + ")</i> <br />" + message + "<hr />"); 
 
             m.ProfileID = Context.User.Identity.GetUserId();
             m.Text = message;

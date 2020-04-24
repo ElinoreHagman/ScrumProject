@@ -1,49 +1,71 @@
 ﻿@using ScrumProject.Models
 @model CalendarIndexViewModel
 
-@Html.Partial("_CreateMeeting")
-@Html.Partial("_InviteForm", new InviteIndexViewModel())
+    <body style="margin-top: 30px;">
 
-<div class="calenderPage">
+        @Html.Partial("_CreateMeeting")
+        @Html.Partial("_InviteForm", new InviteIndexViewModel())
+        <br />
 
-    <div class="calendar">
+        <h2 style="margin: 0 0 0 0; font-weight: bold;">Calendar</h2>
+        <div class="calenderPage">
+            <div class="calendar">
 
-        @foreach (var meeting in Model.Meetings)
-        {
+                @foreach (var meeting in Model.Meetings)
+                {
 
-            <div class="calendar-box">
+                    <div class="calendar-box">
 
-                <div class="dateHolder">
-                    <h2>@meeting.MeetingDateTime.Value.Day/@meeting.MeetingDateTime.Value.Month</h2>
-                    <h3>@meeting.MeetingDateTime.Value.ToString("HH:mm")</h3>
+                        <div class="dateHolder">
+                            <h2>@meeting.MeetingDateTime.Value.Day/@meeting.MeetingDateTime.Value.Month</h2>
+                            <h3>@meeting.MeetingDateTime.Value.ToString("HH:mm")</h3>
 
-                </div>
+                        </div>
 
-                <div class="calendar-box-information">
-                    <h2>@meeting.Name</h2>
-                    <h4>
-                        Bokare: <span>@meeting.CreatorOfMeetings.Forename @meeting.CreatorOfMeetings.Surname</span>
-                    </h4>
-                    <h4>
-                        Deltagare:
-                        @foreach (var participants in Model.ProfilesToMeetings)
-                        {
+                        <div class="calendar-box-information">
+                            <h2>@meeting.Name</h2>
+                            <h4>
+                                Bokad av: <span>@meeting.CreatorOfMeetings.Forename @meeting.CreatorOfMeetings.Surname</span>
+                            </h4>
+                            <h4>
+                                @{
+                                    var meetingParticipants = new List<ProfilesToMeetings>();
+                                }
 
-                            if (participants.MeetingID == meeting.MeetingID)
-                            {
-                                <span>@participants.Profile.Forename @participants.Profile.Surname, </span>
-                            }
+                                Deltagare:
+                                @for (int i = 0; i < Model.ProfilesToMeetings.Count; i++)
+                                {
+                                    if (Model.ProfilesToMeetings[i].MeetingID == meeting.MeetingID)
+                                    {
+                                        meetingParticipants.Add(Model.ProfilesToMeetings[i]);
+                                    }
+                                }
+                                @for (int j = 0; j < meetingParticipants.Count; j++)
+                                {
+                                    if (meetingParticipants[j].ProfileID == meetingParticipants[meetingParticipants.Count - 1].ProfileID)
+                                    {
+                                        <span>@meetingParticipants[j].Profile.Forename @meetingParticipants[j].Profile.Surname</span>
 
-                        }
-                    </h4>
-                </div>
+                                    }
+                                    else
+                                    {
+                                        <span>@meetingParticipants[j].Profile.Forename @meetingParticipants[j].Profile.Surname, </span>
+                                    }
+                                }
+
+
+
+
+                            </h4>
+                        </div>
+                    </div>
+
+                }
+
             </div>
 
-        }
 
-    </div>
+            @Html.Partial("_MeetingForm", new MeetingIndexViewModel())
 
-
-    @Html.Partial("_MeetingForm", new MeetingIndexViewModel())
-  
-</div>
+        </div>
+    </body>

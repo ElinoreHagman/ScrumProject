@@ -6,18 +6,40 @@
     {
         @Html.AntiForgeryToken()
 
-       
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Create Post", "CreatePost", "Post")</li>
-                    <li>@Html.ActionLink("Formal Wall", "FormalWall", "Wall")</li>
-                    <li>@Html.ActionLink("Informal Wall", "InformalWall", "Wall")</li>
+        var countString = @Html.Action("Notifications", "Calendar");
+        int count = Int32.Parse(countString.ToString());
+        var notifications = " (" + count + ")";
+
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Create Post", "CreatePost", "Post")</li>
+                <li>@Html.ActionLink("Formal Wall", "FormalWall", "Wall")</li>
+                <li>@Html.ActionLink("Informal Wall", "InformalWall", "Wall")</li>
+
+                @if(count > 0)
+                {
+                    <li>@Html.ActionLink("Calendar" + notifications, "Index", "Calendar")</li>
+
+                } else
+                {
                     <li>@Html.ActionLink("Calendar", "Index", "Calendar")</li>
-                    <li>@Html.ActionLink("Chat", "Chat", "Home")</li>
-                </ul>
+                }
+
+
+                <li>@Html.ActionLink("Chat", "Chat", "Home")</li>
+            </ul>
            
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @Html.ActionLink("Hello " + Session["loggedInUser"], "Index", "Profile", routeValues: null, htmlAttributes: new { title = "Manage" })
+                @if (Session["loggedInUser"] != null)
+                {
+                    @Html.ActionLink("" + Session["loggedInUser"], "Index", "Profile", routeValues: null, htmlAttributes: new { title = "Manage" })
+
+                }
+                else
+                {
+                    @Html.ActionLink("Your page", "Index", "Profile", routeValues: null, htmlAttributes: new { title = "Manage" })
+
+                }
             </li>
 
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>

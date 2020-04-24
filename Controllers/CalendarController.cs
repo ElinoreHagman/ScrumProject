@@ -178,9 +178,15 @@ namespace ScrumProject.Controllers
         public ActionResult SendInvite(MeetingIndexViewModel model, string[] invitedProfile)
         {
 
+            if (!ModelState.IsValid)
+            {
+                Session["error"] = "Fill out all fields";
+                return RedirectToAction("Index", "Calendar");
+            }
+
             var ctx = new BlogDbContext();
-            DateTime combineDateTime = model.Date.Add(model.Time);
-            DateTime combineDateTime2 = model.Date2.Add(model.Time2);
+            DateTime combineDateTime = model.Date.Value.Add(model.Time.Value);
+            DateTime combineDateTime2 = model.Date2.Value.Add(model.Time2.Value);
 
             var meeting = new Meeting
             {
@@ -254,6 +260,20 @@ namespace ScrumProject.Controllers
             ctx.SaveChanges();
 
             return RedirectToAction("Index", "Calendar");
+        }
+
+        public int Notifications()
+        {
+            int count = 0;
+            var ctx = new BlogDbContext();
+            var userID = User.Identity.GetUserId();
+            var meetings = ctx.Meetings.Where(x => x.MeetingDateTime == null && x.ProfileId == userID && x.EveryoneAnswered == true);
+            var invites = ctx.Invites.Where(x => x.Accepted == false && x.ProfileID == userID);
+
+            count = meetings.Count();
+            count += invites.Count();
+
+            return count;
         }
 
     }

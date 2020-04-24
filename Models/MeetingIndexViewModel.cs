@@ -13,15 +13,15 @@ namespace ScrumProject.Models
         public string MeetingName { get; set; }
 
         [Required]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         [Required]
-        public TimeSpan Time { get; set; }
+        public TimeSpan? Time { get; set; }
 
         [Required]
-        public DateTime Date2 { get; set; }
+        public DateTime? Date2 { get; set; }
 
         [Required]
-        public TimeSpan Time2 { get; set; }
+        public TimeSpan? Time2 { get; set; }
     }
 }

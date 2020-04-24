@@ -15,13 +15,13 @@
 
                     <div class="calendar-content">
 
-                        <h1>Slutför bokningen på ditt möte: @meeting.MeetingName</h1>
+                        <h1>Finish booking meeting: @meeting.MeetingName</h1>
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <input type="hidden" name="meetingId" value="@meeting.MeetingID" />
 
 
                         <h4>
-                            <strong>Tackat ja:</strong>
+                            <strong>Accepted invite:</strong>
                             @foreach (var part in meeting.Participants)
                             {
                                 <p>@part.Forename @part.Surname,</p>
@@ -29,13 +29,13 @@
 
                         </h4>
 
-                        <h3><strong>Datumförslag:</strong></h3>
+                        <h3><strong>Date suggestions:</strong></h3>
 
-                        <p><input name="IsChecked" type="radio" value="@meeting.Date1" /> @meeting.Date1 (röstat för: @meeting.Date1Voters)</p>
+                        <p><input name="IsChecked" type="radio" value="@meeting.Date1" /> @meeting.Date1 (voted for: @meeting.Date1Voters)</p>
                         <br />
-                        <p><input name="IsChecked" type="radio" value="@meeting.Date2" /> @meeting.Date2 (röstat för: @meeting.Date2Voters)</p>
+                        <p><input name="IsChecked" type="radio" value="@meeting.Date2" /> @meeting.Date2 (voted for: @meeting.Date2Voters)</p>
                         <br />
-                        <input type="submit" value="Boka möte" class="btn btn-danger" style="margin: 10px 0 0 0px;" />
+                        <input type="submit" value="Booa meeting" class="btn btn-danger" style="margin: 10px 0 0 0px;" />
                     </div>
                 </div>
             }
@@ -44,16 +44,16 @@
 
         else
         {
-            <div class="form-horizontal jumbotron meeting-form-nopadding">
-                <div>
+            <div style="box-shadow: 0px 0px 3px #808080;" class="form-horizontal jumbotron meeting-form-nopadding">
+                <div style="padding: 6px;">
                     @using (Html.BeginForm("DeleteOldMeeting", "Calendar", FormMethod.Post))
                     {
-                        <h4>Alla du bjöd in tackade nej till ditt möte (@meeting.MeetingName)</h4>
+                    <h4>
+                        Everyone you invited declined your invite (@meeting.MeetingName)
                         <input type="hidden" name="meetingName" value="@meeting.MeetingName" />
-
-                        <div class="form-group">
-                            <input type="submit" value="Ta bort" class="btn btn-danger" style="margin: 5px 0 0 16px;" />
-                        </div>
+                        <input type="submit" value="X" class="btn btn-danger btn-xs" style="margin: 0 0 0 8px;" />
+                    </h4>
+                  
                     }
                 </div>
             </div>

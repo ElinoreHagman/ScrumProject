@@ -134,8 +134,8 @@ textarea {
 .calenderPage {
     width: 100%;
     display: flex;
-    margin-top: 20px;
     flex-wrap: wrap;
+    margin-top: 0px;
 }
 
 .calendar {
@@ -215,4 +215,83 @@ textarea {
 
 .content-blue {
     background-color: rgba(199, 226, 241, 0.85)
+}
+
+.inline-text {
+    color: white;
+    height: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.flex-chat {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+}
+
+.input-chat .btn {
+    border-radius: 0px !important;
+    width: 100px;
+}
+
+.input-chat {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px 0;
+}
+
+.input-chat input {
+    max-width: 100%;
+    flex: 1;
+    margin-right: 5px;
+}
+
+.chat-content {
+    background-color: #e8e8e8;
+    height: 80%;
+    box-shadow: 0px 0px 2px rgba(128, 128, 128, 0.75);
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+#user{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+#user li::before {
+    color: #37c805;
+    content: "\2022";
+    display: inline-block;
+    font-size: 3em;
+    left: -0.46em;
+    position: absolute;
+    top: -0.44em;
+}
+
+#user li {
+    color: #37c805;
+    display: inline-block;
+    padding: 0;
+    position: relative;
+    margin: 5px 10px 5px 16px;
+}
+
+#message {
+    padding: 0px;
+    margin: 0;
+    list-style: none;
+}
+
+.chat-content hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 0;
+    border-top: 1px solid rgba(99, 165, 222, 0.55);
 }

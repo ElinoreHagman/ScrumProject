@@ -2,14 +2,17 @@
 
 @using (Html.BeginForm("SendInvite", "Calendar", FormMethod.Post))
 {
+
     @Html.AntiForgeryToken()
 
     <div class="calendar-information-form">
         <div class="calendar-content">
 
-            <h1>Skapa nytt möte</h1>
+            <h1>Send out meeting invitations</h1>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <br />
+            <p class="alert-danger">@Session["error"]</p>
+
             <h3><strong>Namn på mötet:</strong></h3>
             <div class="form-group">
                 @Html.EditorFor(model => model.MeetingName, new { htmlAttributes = new { @class = "form-control" } })
@@ -41,9 +44,13 @@
                     }
                 </select>
 
+                @{
+                    Session["error"] = null;
+                }
+
             </div>
 
             <input type="submit" value="Skicka inbjudan" class="btn btn-success" style="width: 100%; margin: 10px 0 0 0px;" />
         </div>
-        </div>
-        }
+    </div>
+}
