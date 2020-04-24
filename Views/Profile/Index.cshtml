@@ -1,4 +1,5 @@
 ﻿@using ScrumProject.Models
+@using Microsoft.AspNet.Identity;
 @model ProfileIndexViewModel
 
 <table>
@@ -36,5 +37,11 @@
 </table>
 
 
-<li>@Html.ActionLink("Admin settings", "AdminPage", "Profile")</li>
+@foreach (var admin in (ViewBag.admin as List<ScrumProject.Models.Profile>))
+{
+    if (admin.ProfileID.Equals(User.Identity.GetUserId()) && admin.AdminRights == true)
+    {
 
+        <li>@Html.ActionLink("Admin settings", "AdminPage", "Profile")</li>
+    }
+}

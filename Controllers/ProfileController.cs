@@ -17,6 +17,7 @@ namespace ScrumProject.Controllers
 
             var ctx = new BlogDbContext();
             ViewBag.user = ctx.Users.ToList();
+            ViewBag.admin = ctx.Profiles.ToList();
             var viewModel = new ProfileIndexViewModel
             {
                 Profiles = ctx.Profiles.ToList()
@@ -27,13 +28,15 @@ namespace ScrumProject.Controllers
         [Authorize]
         public ActionResult AdminPage()
         {
-            var ctx = new BlogDbContext();
-            ViewBag.user = ctx.Users.ToList();
-            var viewModel = new ProfileIndexViewModel
-            {
-                Profiles = ctx.Profiles.ToList()
-            };
-            return View(viewModel);
+             
+                var ctx = new BlogDbContext();
+                ViewBag.user = ctx.Users.ToList();
+                var viewModel = new ProfileIndexViewModel
+                {
+                    Profiles = ctx.Profiles.ToList()
+                };
+                return View(viewModel);
+            
         }
 
         [Authorize]

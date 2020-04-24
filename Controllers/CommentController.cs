@@ -40,9 +40,17 @@ namespace ScrumProject.Controllers
             blogDb.Comments.Add(comment);
             blogDb.SaveChanges();
 
+            var commentedPost = blogDb.Posts.FirstOrDefault(p => p.PostID == comment.PostID);
 
-            return RedirectToAction("FormalWall", "Wall");
+            if (commentedPost.PublishedWall.Equals("Formell"))
+            {
 
+                return RedirectToAction("FormalWall", "Wall");
+            }
+            else
+            {
+                return RedirectToAction("InformalWall", "Wall");
+            }
         }
     }
 }
