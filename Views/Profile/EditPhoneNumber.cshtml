@@ -1,0 +1,34 @@
+﻿@model ScrumProject.Models.Profile
+@*@model ProfileIndexViewModel*@
+
+@{
+    ViewBag.Title = "EditPhoneNumber";
+}
+
+@using (Html.BeginForm("EditPhoneNumber", "Profile", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <br />
+    <div class="edit">
+
+        <h2>Edit Phone Number </h2>
+
+
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ProfileID)*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Phonenumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" style="margin-bottom: 5px;">
+                @Html.EditorFor(model => model.Phonenumber, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-warning" />
+        </div>
+
+
+    </div>
+}} 

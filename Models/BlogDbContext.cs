@@ -17,7 +17,7 @@ namespace ScrumProject.Models
         public DbSet<Invite> Invites { get; set; }
         public DbSet<Settings> Settings { get; set; }
         public DbSet<Comment> Comments { get; set; }
-
+        public DbSet<ChosenCategories> SelectedCategories { get; set; }
         public DbSet<MeetingDateOptions> MeetingOptions { get; set; }
         public DbSet<MeetingDateOptionsToInvite> MeetingDateOptionsToInvite { get; set; }
         public DbSet<ProfilesToMeetings> ProfilesToMeetings { get; set; }

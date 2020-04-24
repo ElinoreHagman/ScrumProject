@@ -247,12 +247,17 @@
     <Compile Include="Migrations\202004231446415_WallSettings.Designer.cs">
       <DependentUpon>202004231446415_WallSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004240745190_newTableInserted.cs" />
+    <Compile Include="Migrations\202004240745190_newTableInserted.Designer.cs">
+      <DependentUpon>202004240745190_newTableInserted.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
     <Compile Include="Models\CalendarIndexViewModel.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategoryIndexViewModel.cs" />
+    <Compile Include="Models\ChosenCategories.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\EmailNotifyViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -363,6 +368,10 @@
     <Content Include="Views\Profile\WallSettings.cshtml" />
     <Content Include="Views\Calendar\_CreateMeeting.cshtml" />
     <Content Include="Views\Profile\AdminAccept.cshtml" />
+    <Content Include="Views\Profile\EditPhoneNumber.cshtml" />
+    <Content Include="Views\Profile\SelectCategory.cshtml" />
+    <Content Include="Views\Profile\ShowOthersProfile.cshtml" />
+    <Content Include="Views\Profile\ShowProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -427,6 +436,9 @@
     <EmbeddedResource Include="EmailInfo.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>EmailInfo.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004240745190_newTableInserted.resx">
+      <DependentUpon>202004240745190_newTableInserted.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

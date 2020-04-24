@@ -33,5 +33,6 @@ namespace ScrumProject.Models
 
         public IList<Meeting> CreatorOfMeetings { get; set; }
         public virtual Settings Settings { get; set; }
+        public IList<ChosenCategories> GetNotificationsOn { get; set; }
     }
 } 

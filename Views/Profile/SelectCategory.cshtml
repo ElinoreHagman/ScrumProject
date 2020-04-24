@@ -1,0 +1,33 @@
+﻿@using ScrumProject.Models
+@model ProfileIndexViewModel
+
+
+@using (Html.BeginForm("SelectCategory", "Profile", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <br />
+
+    <div class="jumbotron">
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.ChosenCategory, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                <h2>Select a category </h2>
+
+                <select id="dropdownMenu" name="dropdownMenu" class="form-control" style="margin-bottom: 5px;">
+                    <option value="0">Choose category</option>
+                    @foreach (var category in (ViewBag.categories as List<ScrumProject.Models.Category>))
+                    {
+                        <option value="@category.Name">@category.Name</option>
+                    }
+                </select>
+                <input type="submit" value="Select" class="btn btn-xs btn-primary" />
+            </div>
+
+        </div>
+    </div>
+}
+
+}

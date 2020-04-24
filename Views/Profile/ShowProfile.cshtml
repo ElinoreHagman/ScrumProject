@@ -1,0 +1,66 @@
+﻿@using ScrumProject.Models
+@using Microsoft.AspNet.Identity;
+@model ProfileIndexViewModel
+
+
+<div class="flex">
+
+    @foreach (var profile in Model.Profiles)
+    {
+        if (profile.ProfileID.Equals(User.Identity.GetUserId()))
+        {
+
+            <div id="profile" class="bg-default" style="padding: 1px 10px 20px 15px; margin: 10px 0px;">
+                <h3>
+                    Profile
+                </h3>
+
+                @Html.Label("Forename: ") @profile.Forename
+                <br />
+                @Html.Label("Surname: ") @profile.Surname
+                <br />
+                @Html.Label("Phone number: ") @profile.Phonenumber @Html.ActionLink("Edit", "EditPhoneNumber", "Profile", new { profileID = @profile.ProfileID }, null)
+
+            </div>
+        }
+
+    }
+
+</div>
+
+
+<div id="category" class="bg-default" style="padding: 1px 10px 20px 15px; margin: 10px 0px;">
+    <h3>
+        What are you intrested in?
+    </h3>
+    <h4>
+        Select a category to get notifications from!
+    </h4>
+
+    @Html.ActionLink("Select", "SelectCategory", "Profile")
+
+    <br />
+
+    <h5>Your selected categories are: </h5>
+    <br />
+    @foreach (var chosenCategory in Model.ChosenCategory)
+    {
+        if (chosenCategory.ProfileID.Equals(User.Identity.GetUserId()))
+        {
+            @chosenCategory.Name
+            <br />
+        }
+    }
+</div>
+
+<div id="other profiles" class="bg-default" style="padding: 1px 10px 20px 15px; margin: 10px 0px;">
+
+    <h3>
+        See profiles
+    </h3>
+    <h4>
+        Here you can see the profiles of you colleagues.
+    </h4>
+    @Html.ActionLink("Click here", "ShowOthersProfile", "Profile")
+
+</div>
