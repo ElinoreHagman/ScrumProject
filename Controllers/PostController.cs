@@ -62,10 +62,20 @@ namespace ScrumProject.Models
                         ctx.SaveChanges();
                         ViewBag.FileStatus = "Photo uploaded successfully.";
 
+                        var postCat = post.Category.Name;
                         var viewModel = new EmailNotifyViewModel();
-                        viewModel.ToEmail = "mattiasbolander.mb@gmail.com";
-                        var emailSent = await Index(viewModel);
+                        var profiles = ctx.SelectedCategories.Where(x => x.Name == postCat).Select(x => x.ProfileID).ToList();
+                        var blogDb = new BlogDbContext();
+                        foreach (var p in profiles)
+                        {
+
+                            var destinationEmail = blogDb.Users.FirstOrDefault(x => x.UserID == p);
+                            var mail = destinationEmail.Email;
+                            viewModel.ToEmail = mail;
+                            var emailSent = await Index(viewModel);
+                        }
                     }
+
 
                     else
                     {
@@ -84,9 +94,18 @@ namespace ScrumProject.Models
                 ctx.Posts.Add(post);
                 ctx.SaveChanges();
 
+                var postCat = post.Category.Name;
                 var viewModel = new EmailNotifyViewModel();
-                viewModel.ToEmail = "mattiasbolander.mb@gmail.com";
-                var emailSent = await Index(viewModel);
+                var profiles = ctx.SelectedCategories.Where(x => x.Name == postCat).Select(x => x.ProfileID).ToList();
+                var blogDb = new BlogDbContext();
+                foreach (var p in profiles)
+                {
+
+                    var destinationEmail = blogDb.Users.FirstOrDefault(x => x.UserID == p);
+                    var mail = destinationEmail.Email;
+                    viewModel.ToEmail = mail;
+                    var emailSent = await Index(viewModel);
+                }
             }
 
             ViewBag.EditStatus = "Successful registration";
