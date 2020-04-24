@@ -1,61 +1,63 @@
-﻿    @foreach (var meeting in ViewBag.meetingInfo)
+﻿
+<div class="flex-container">
+
+    @foreach (var meeting in ViewBag.meetingInfo)
     {
 
-if (meeting.MeetingID != 0)
-{
-
-    using (Html.BeginForm("DecideMeeting", "Calendar", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal jumbotron meeting-form">
-            <h4>Godkänn möte</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-            <div class="col-md-10">
-                <strong>Namn på mötet:</strong>
-                <h4>@meeting.MeetingName</h4>
-
-                <input type="hidden" name="meetingId" value="@meeting.MeetingID" />
-
-                <strong>Datumförslag 1:</strong>
-
-                <h4><input name="IsChecked" type="radio" value="@meeting.Date1" /> @meeting.Date1 (röstat för: @meeting.Date1Voters)</h4>
-                <h4><input name="IsChecked" type="radio" value="@meeting.Date2" /> @meeting.Date2 (röstat för: @meeting.Date2Voters)</h4>
-
-                <strong>Tackat ja:</strong>
-                @foreach (var part in meeting.Participants)
-                {
-                    <h4>@part.Forename @part.Surname</h4>
-                }
-
-            </div>
-
-
-            <div class="form-group">
-                <input type="submit" value="Boka möte" class="btn btn-info" style="margin: 5px 0 0 16px;" />
-            </div>
-
-        </div>
-    }
-
-}
-
-else
-{
-<div class="form-horizontal jumbotron meeting-form-nopadding">
-    <div>
-        @using (Html.BeginForm("DeleteOldMeeting", "Calendar", FormMethod.Post))
+        if (meeting.MeetingID != 0)
         {
-            <h4>Alla du bjöd in tackade nej till ditt möte (@meeting.MeetingName)</h4>
-            <input type="hidden" name="meetingName" value="@meeting.MeetingName" />
 
-            <div class="form-group">
-                <input type="submit" value="Ta bort" class="btn bg-danger" style="margin: 5px 0 0 16px;" />
+            using (Html.BeginForm("DecideMeeting", "Calendar", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="calendar-information-form content-red">
+
+                    <div class="calendar-content">
+
+                        <h1>Slutför bokningen på ditt möte: @meeting.MeetingName</h1>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <input type="hidden" name="meetingId" value="@meeting.MeetingID" />
+
+
+                        <h4>
+                            <strong>Tackat ja:</strong>
+                            @foreach (var part in meeting.Participants)
+                            {
+                                <p>@part.Forename @part.Surname,</p>
+                            }
+
+                        </h4>
+
+                        <h3><strong>Datumförslag:</strong></h3>
+
+                        <p><input name="IsChecked" type="radio" value="@meeting.Date1" /> @meeting.Date1 (röstat för: @meeting.Date1Voters)</p>
+                        <br />
+                        <p><input name="IsChecked" type="radio" value="@meeting.Date2" /> @meeting.Date2 (röstat för: @meeting.Date2Voters)</p>
+                        <br />
+                        <input type="submit" value="Boka möte" class="btn btn-danger" style="margin: 10px 0 0 0px;" />
+                    </div>
+                </div>
+            }
+
+        }
+
+        else
+        {
+            <div class="form-horizontal jumbotron meeting-form-nopadding">
+                <div>
+                    @using (Html.BeginForm("DeleteOldMeeting", "Calendar", FormMethod.Post))
+                    {
+                        <h4>Alla du bjöd in tackade nej till ditt möte (@meeting.MeetingName)</h4>
+                        <input type="hidden" name="meetingName" value="@meeting.MeetingName" />
+
+                        <div class="form-group">
+                            <input type="submit" value="Ta bort" class="btn btn-danger" style="margin: 5px 0 0 16px;" />
+                        </div>
+                    }
+                </div>
             </div>
         }
+    }
+
     </div>
-</div>
-}
-}

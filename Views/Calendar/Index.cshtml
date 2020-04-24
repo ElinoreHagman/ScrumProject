@@ -6,7 +6,7 @@
 
 <div class="calenderPage">
 
-    <div class="jumbotron margin">
+    <div class="calendar">
 
        
         @foreach (var meeting in Model.Meetings)
@@ -31,7 +31,7 @@
 
                             if (participants.MeetingID == meeting.MeetingID)
                             {
-                                <span>@participants.Profile.Forename @participants.Profile.Surname</span>
+                                <span>@participants.Profile.Forename @participants.Profile.Surname, </span>
                             }
 
                         }

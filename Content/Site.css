@@ -6,6 +6,7 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    margin-top: 20px;
 }
 
 .center-form {
@@ -91,6 +92,8 @@ textarea {
     background-color: white;
     margin-bottom: 10px;
     display: flex;
+    background-color: #ebebeb;
+    box-shadow: 0px 0px 3px #808080;
 }
 
 .dateHolder {
@@ -126,10 +129,6 @@ textarea {
     font-size: 24px;
 }
 
-.calendar-box-information span {
-    background-color: #caffd0;
-    padding: 2px 13px;
-}
 .CommentLabel {
     color: white;
 }
@@ -140,10 +139,12 @@ textarea {
     flex-wrap: wrap;
 }
 
-.calenderPage .jumbotron {
-    margin: 0 10px;
-    padding: 20px;
+.calendar {
+    background-color: white;
+    margin-top: 30px;
+    width: auto;
     flex: 1;
+    margin-right: 20px;
 }
 
 .meeting-form {
@@ -159,4 +160,60 @@ textarea {
 }
 .meeting-form-nopadding > div {
     margin: 10px !important;
+}
+
+.calendar-information-form {
+    background-color: #ebebeb;
+    margin-top: 30px;
+    width: auto;
+    box-shadow: 0px 0px 3px #808080;
+}
+
+.calendar-information-form h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+.calendar-information-form h3 {
+    margin: 5px 0 2px 0;
+    padding: 5px 0 0 0;
+    font-size: 16px;
+}
+
+.calendar-information-form h4 {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: #27679f;
+    font-style:italic;
+}
+
+.calendar-information-form p {
+    display: inline;
+}
+
+.calendar-information-form btn {
+    display: block;
+}
+
+.calendar-content {
+    padding: 20px;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.flex-container div {
+    margin: 0 10px;
+}
+
+.content-red {
+    background-color: rgba(241, 199, 199, 0.85)
+}
+
+.content-blue {
+    background-color: rgba(199, 226, 241, 0.85)
 }

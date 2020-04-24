@@ -21,14 +21,14 @@ namespace ScrumProject.Controllers
 
             ViewBag.people = ctx.Profiles.Where(x => x.ProfileID != user).ToList();
 
-            var InviteIDs = ctx.Invites.Where(x => x.ProfileID == user && x.Accepted == false).Select(x => x.InviteID).ToList();
+            var InviteIDs = ctx.Invites.Where(x => x.ProfileID == user && x.Accepted == false).ToList();
 
             ViewBag.inviteInformation = new List<InviteModel>();
 
             foreach (var invite in InviteIDs)
             {
                 var DateIds = new List<int>();
-                DateIds = ctx.MeetingDateOptionsToInvite.Where(x => x.InviteID == invite).Select(x => x.MeetingDateOptionID).ToList();
+                DateIds = ctx.MeetingDateOptionsToInvite.Where(x => x.InviteID == invite.InviteID).Select(x => x.MeetingDateOptionID).ToList();
 
                 var dateDetails = new List<DateTime>();
 
@@ -37,8 +37,8 @@ namespace ScrumProject.Controllers
                     dateDetails.Add(ctx.MeetingOptions.Where(x => x.OptionID == dateid).Select(x => x.Date).Single());
                 }
 
-                string meetingName = ctx.Invites.Where(x => x.InviteID == invite).Select(x => x.MeetingName).Single();
-                var meetingId = ctx.Invites.Where(x => x.InviteID == invite).Single();
+                string meetingName = ctx.Invites.Where(x => x.InviteID == invite.InviteID).Select(x => x.MeetingName).Single();
+                var meetingId = ctx.Invites.Where(x => x.InviteID == invite.InviteID).Single();
 
                 var meetingCreator = ctx.Meetings.FirstOrDefault(x => x.MeetingID == meetingId.MeetingID);
 
@@ -49,11 +49,12 @@ namespace ScrumProject.Controllers
 
                 var inviteTemplate = new InviteModel()
                 {
-                    MeetingName = meetingName,
+                    MeetingID = invite.MeetingID,
+                    MeetingName = invite.MeetingName,
                     Creator = creatorName,
                     DateSuggestion1 = dateDetails[0],
                     DateSuggestion2 = dateDetails[1],
-                    InviteId = invite
+                    InviteId = invite.InviteID
                 };
 
                 ViewBag.inviteInformation.Add(inviteTemplate);
@@ -114,7 +115,7 @@ namespace ScrumProject.Controllers
             return View(viewmodel);
         }
 
-        public ActionResult AnswerInvite(string IsChecked, string inviteId, string meetingName)
+        public ActionResult AnswerInvite(string IsChecked, string inviteId, int meetingID)
         {
             if (IsChecked == null)
             {
@@ -153,7 +154,7 @@ namespace ScrumProject.Controllers
                 ctx.SaveChanges();
             }
 
-            var allInvitesInMeetings = ctx.Invites.Where(x => x.MeetingName == meetingName).ToList();
+            var allInvitesInMeetings = ctx.Invites.Where(x => x.MeetingID == meetingID).ToList();
             bool EveryoneAnswered = true;
 
             foreach(var invite in allInvitesInMeetings)
@@ -166,7 +167,7 @@ namespace ScrumProject.Controllers
 
             if(EveryoneAnswered)
             {
-                var meeting = ctx.Meetings.FirstOrDefault(x => x.Name == meetingName);
+                var meeting = ctx.Meetings.FirstOrDefault(x => x.MeetingID == meetingID);
                 meeting.EveryoneAnswered = true;
                 ctx.SaveChanges();
             }
