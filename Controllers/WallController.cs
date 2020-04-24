@@ -60,7 +60,8 @@ namespace ScrumProject.Controllers
             {
                 Profiles = blogDB.Profiles.ToList(),
                 Posts = blogDB.Posts.ToList(),
-                Categories = blogDB.Categories.ToList()
+                Categories = blogDB.Categories.ToList(),
+                Comments = blogDB.Comments.ToList()
             };
             return View(viewModel);
         }

@@ -11,6 +11,7 @@ namespace ScrumProject.Controllers
     public class CommentController : Controller
     {
         [Authorize]
+        [HttpGet]
         public ActionResult CreateComment(int postId)
         {
 
@@ -40,7 +41,7 @@ namespace ScrumProject.Controllers
             blogDb.SaveChanges();
 
 
-            return RedirectToAction("InformalWall", "Wall");
+            return RedirectToAction("FormalWall", "Wall");
 
         }
     }
