@@ -25,14 +25,14 @@
                         <div class="calendar-box-information">
                             <h2>@meeting.Name</h2>
                             <h4>
-                                Bokad av: <span>@meeting.CreatorOfMeetings.Forename @meeting.CreatorOfMeetings.Surname</span>
+                                Booker: <span>@meeting.CreatorOfMeetings.Forename @meeting.CreatorOfMeetings.Surname</span>
                             </h4>
                             <h4>
                                 @{
                                     var meetingParticipants = new List<ProfilesToMeetings>();
                                 }
 
-                                Deltagare:
+                                Participants:
                                 @for (int i = 0; i < Model.ProfilesToMeetings.Count; i++)
                                 {
                                     if (Model.ProfilesToMeetings[i].MeetingID == meeting.MeetingID)

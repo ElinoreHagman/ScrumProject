@@ -1,6 +1,23 @@
 ﻿@using ScrumProject.Models
 @model ProfileIndexViewModel
 
+<h2>Change default wall</h2>
+<table>
+    <tr>
+        <td>
+            @Html.ActionLink("Edit default wall", "WallSettings", "Profile")
+        </td>
+    </tr>
+
+</table>
+
+<div id="AdminAccept" class="bg-default" style="padding: 1px 10px 20px 15px; margin: 10px 0px;">
+    <br /><h2><b>Accept new registration request</b></h2>
+    @Html.Partial("AdminAccept")
+</div>
+
+<hr />
+
 
 <h1><b>Admin Page</b></h1>
 

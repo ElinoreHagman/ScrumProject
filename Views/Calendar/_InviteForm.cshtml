@@ -1,41 +1,48 @@
 ﻿@model ScrumProject.Models.InviteIndexViewModel
 
-    <h4>@TempData["accepted"]</h4>
+@if (@TempData["accepted_invite"] != null)
+{
+    <p class="alert-success">@TempData["accepted_invite"]</p>
+}
 
-    <div class="flex-container">
+<div class="flex-container">
 
-        @foreach (var invite in @ViewBag.inviteInformation)
+    @foreach (var invite in @ViewBag.inviteInformation)
+    {
+
+        using (Html.BeginForm("AnswerInvite", "Calendar", FormMethod.Post))
         {
+            @Html.AntiForgeryToken()
 
-            using (Html.BeginForm("AnswerInvite", "Calendar", FormMethod.Post))
-            {
-                @Html.AntiForgeryToken()
+    <div class="calendar-information-form content-blue">
 
-                <div class="calendar-information-form content-blue">
+        <div class="calendar-content">
 
-                    <div class="calendar-content">
+            <h1>Svara på inbjudan till möte: @invite.MeetingName</h1>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                        <h1>Svara på inbjudan till möte: @invite.MeetingName</h1>
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                        <h4>Möte hålls av: <strong>@invite.Creator</strong></h4>
+            <h4>Möte hålls av: <strong>@invite.Creator</strong></h4>
 
 
-                        <h3><strong>Datumförslag:</strong></h3>
+            <h3><strong>Datumförslag:</strong></h3>
 
-                        <input name="IsChecked" type="radio" value="@invite.DateSuggestion1" /> @invite.DateSuggestion1
-                        <br />
-                        <input name="IsChecked" type="radio" value="@invite.DateSuggestion2" /> @invite.DateSuggestion2
-                        <br />
-                        <input name="IsChecked" type="radio" value="False" /> Tacka nej
-                        <br />
+            <input name="IsChecked" type="radio" value="@invite.DateSuggestion1" /> @invite.DateSuggestion1
+            <br />
+            <input name="IsChecked" type="radio" value="@invite.DateSuggestion2" /> @invite.DateSuggestion2
+            <br />
+            <input name="IsChecked" type="radio" value="False" /> Tacka nej
+            <br />
 
-                        <input value=@invite.InviteId name="inviteId" type="hidden">
-                        <input value=@invite.MeetingID name="meetingID" type="hidden">
-                        <input type="submit" value="Svara på inbjudan" class="btn btn-info" style="margin: 10px 0 0px 0px;" />
+            <input value=@invite.InviteId name="inviteId" type="hidden">
+            <input value=@invite.MeetingID name="meetingID" type="hidden">
+            <input type="submit" value="Svara på inbjudan" class="btn btn-info" style="margin: 10px 0 0px 0px;" />
+            <p class="alert-danger">@Session["error_invite"]</p>
 
-                    </div>
-                </div>
-            }
+        </div>
+        @{
+            Session["error_invite"] = null;
         }
     </div>
+        }
+    }
+</div>

@@ -26,14 +26,15 @@ namespace ScrumProject
         {
             var datum = DateTime.UtcNow;
             Clients.Caller.message("<strong>You</strong> <i>(" + datum + ")</i> <br />" + message + "<hr />");
-            Clients.Others.message("<strong>" + Context.User.Identity.Name + "</strong><i> (" + datum + ")</i> <br />" + message + "<hr />"); 
+            Clients.Others.message("<strong>" + Context.User.Identity.Name + "</strong><i> (" + datum + ")</i> <br />" + message + "<hr />");
 
-            m.ProfileID = Context.User.Identity.GetUserId();
+            var user = Context.User.Identity.GetUserId();
+            m.AuthorOfMessages = db.Profiles.FirstOrDefault(x => x.ProfileID == user);
+            m.ProfileID = user;
             m.Text = message;
             m.Date = datum;
             db.Messages.Add(m);
             db.SaveChanges();
-
         }
     }
 }

@@ -1,0 +1,22 @@
+﻿
+    <div class="calendar-information-form">
+
+        <div class="calendar-content">
+
+            @using (Html.BeginForm("AddCategory", "Post", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <h2 style="margin-top: 0px;">Add a new category</h2>
+
+                <h3>Name</h3>
+                <input type="text" name="newCategory" />
+
+                <input type="submit" value="Add new" class="btn btn-success" />
+
+            }
+
+            <p class="alert-info">@TempData["category_info"]</p>
+
+        </div>
+        </div>

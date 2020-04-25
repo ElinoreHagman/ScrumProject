@@ -1,4 +1,7 @@
-﻿
+﻿@if (@TempData["accepted_booking"] != null)
+{
+    <p class="alert-success">@TempData["accepted_booking"]</p>
+}
 <div class="flex-container">
 
     @foreach (var meeting in ViewBag.meetingInfo)
@@ -35,8 +38,13 @@
                         <br />
                         <p><input name="IsChecked" type="radio" value="@meeting.Date2" /> @meeting.Date2 (voted for: @meeting.Date2Voters)</p>
                         <br />
-                        <input type="submit" value="Booa meeting" class="btn btn-danger" style="margin: 10px 0 0 0px;" />
+                        <input type="submit" value="Book meeting" class="btn btn-danger" style="margin: 10px 0 0 0px;" />
+                        <p class="alert-danger">@Session["error_booking"]</p>
+
                     </div>
+                    @{
+                        Session["error_booking"] = null;
+                    }
                 </div>
             }
 
@@ -48,16 +56,16 @@
                 <div style="padding: 6px;">
                     @using (Html.BeginForm("DeleteOldMeeting", "Calendar", FormMethod.Post))
                     {
-                    <h4>
-                        Everyone you invited declined your invite (@meeting.MeetingName)
-                        <input type="hidden" name="meetingName" value="@meeting.MeetingName" />
-                        <input type="submit" value="X" class="btn btn-danger btn-xs" style="margin: 0 0 0 8px;" />
-                    </h4>
-                  
+                        <h4>
+                            Everyone you invited declined your invite (@meeting.MeetingName)
+                            <input type="hidden" name="meetingName" value="@meeting.MeetingName" />
+                            <input type="submit" value="X" class="btn btn-danger btn-xs" style="margin: 0 0 0 8px;" />
+                        </h4>
+
                     }
                 </div>
             </div>
         }
     }
 
-    </div>
+</div>

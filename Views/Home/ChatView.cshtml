@@ -5,13 +5,29 @@
     <body style="height: 100%">
 
         <h1 style="text-align: center; margin-bottom: 20px;">Chat room</h1>
-
         <div class="flex-chat">
 
             <div class="chat-content">
-                <i>Be the first to say something..</i>
-                <hr>
-                <ul id="message"></ul>
+
+                <ul id="message">
+
+                    @if (ViewBag.OldMessages.Count > 0)
+                    {
+                        <i>Messages from earlier today:</i>
+                        <hr>
+                        foreach (var message in ViewBag.OldMessages)
+                        {
+                            <li style="color: grey;"><strong>@message.AuthorOfMessages.Forename @message.AuthorOfMessages.Surname</strong> <i>(@message.Date)</i> <br /> @message.Text</li>
+                            <hr>
+                            }
+                    }
+                    else
+                    {
+                        <i>Be the first to say something..</i>
+                        <hr>
+                    }
+
+                </ul>
             </div>
 
 
@@ -30,14 +46,11 @@
         </div>
 
 
-
-
         @section scripts{
             <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
             <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
             <script src="~/signalr/hubs"></script>
             <script src="~/app/app.js"></script>
-
         }
     </body>
 

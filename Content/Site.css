@@ -206,7 +206,7 @@ textarea {
 }
 
 .flex-container div {
-    margin: 0 10px;
+    margin: 0px 10px 10px 10px;
 }
 
 .content-red {
@@ -294,4 +294,12 @@ textarea {
     margin-bottom: 10px;
     border: 0;
     border-top: 1px solid rgba(99, 165, 222, 0.55);
+}
+
+#Content {
+    margin: 0px;
+    width: 373px;
+    height: 115px;
+    border-radius: 5px;
+    border-color: #bebebe;
 }

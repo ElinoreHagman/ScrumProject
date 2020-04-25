@@ -275,6 +275,7 @@
     <Compile Include="Models\PostIndexViewModel.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\ProfileIndexViewModel.cs" />
+    <Compile Include="Models\ProfileInfoViewModel.cs" />
     <Compile Include="Models\ProfilesToMeetings.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\User.cs" />
@@ -372,6 +373,7 @@
     <Content Include="Views\Profile\SelectCategory.cshtml" />
     <Content Include="Views\Profile\ShowOthersProfile.cshtml" />
     <Content Include="Views\Profile\ShowProfile.cshtml" />
+    <Content Include="Views\Post\_AddCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

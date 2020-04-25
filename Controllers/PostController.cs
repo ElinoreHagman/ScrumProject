@@ -27,14 +27,21 @@ namespace ScrumProject.Models
         [HttpPost]
         public async Task<ActionResult> CreatePost(Post model, HttpPostedFileBase FilePath, string dropdownMenu)
         {
+            if (!ModelState.IsValid)
+            {
+                var db = new BlogDbContext();
+                var myList = db.Categories.ToList();
+                ViewBag.categories = myList;
+                return View();
+            }
 
             var ctx = new BlogDbContext();
             var user = User.Identity.GetUserId();
             var catId = ctx.Categories.FirstOrDefault(p => p.Name == dropdownMenu);
             var author = ctx.Profiles.FirstOrDefault(p => p.ProfileID == user);
+
             var post = new Post
             {
-
                 Title = model.Title,
                 Content = model.Content,
                 PublishedWall = model.PublishedWall,
@@ -284,6 +291,25 @@ namespace ScrumProject.Models
 
             // info.  
             return isSend;
+        }
+
+        public ActionResult AddCategory(string newCategory)
+        {
+            if(newCategory.Length < 3)
+            {
+                TempData["category_info"] = "Write something first";
+                return RedirectToAction("CreatePost", "Post");
+            }
+
+            var ctx = new BlogDbContext();
+            var category = new Category();
+            category.Name = newCategory;
+            ctx.Categories.Add(category);
+            ctx.SaveChanges();
+
+            TempData["category_info"] = "New category added";
+
+            return RedirectToAction("CreatePost", "Post");
         }
     }
 }

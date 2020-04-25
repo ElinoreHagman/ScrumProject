@@ -1,40 +1,43 @@
 ﻿@using ScrumProject.Models
-@model ProfileIndexViewModel
-
-<table>
-    @foreach (var profile in Model.Profiles)
-    {
-        <tr>
-            <td>@profile.Forename</td>
-            <td>@profile.Surname</td>
-            <td>@profile.Phonenumber</td>
-            <td>@profile.AdminRights</td>
-            <td style="visibility:collapse;">@profile.ProfileID</td>
-        </tr>
-    }
-</table>
-<hr />
-
-@Html.Partial("AddProfileForm", new Profile())
+@model Profile
 
 
-<div id="AdminAccept" class="bg-default" style="padding: 1px 10px 20px 15px; margin: 10px 0px;">
-    <br /><h2><b>Accept new registration request</b></h2>
-    @Html.Partial("AdminAccept")
+<div class="calendar-information-form">
+    <div class="calendar-content">
+
+        <h2 style="margin-top: 0;">Change your information</h2>
+        @using (Html.BeginForm("UpdateProfile", "Profile", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <h3>First name</h3>
+            @Html.EditorFor(model => model.Forename, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Forename, "", new { @class = "text-danger" })
+
+            <br />
+            <h3>Surname</h3>
+            @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+            <br />
+
+            <h3>Phone number</h3>
+            @Html.EditorFor(model => model.Phonenumber, new { htmlAttributes = new { type = "number", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Phonenumber, "", new { @class = "text-danger" })
+            <br />
+
+            <input type="submit" value="Update" class="btn btn-info" />
+        }
+
+    </div>
 </div>
 
-<hr />
-
-<h2>Change default wall</h2>
-<table>
-    <tr>
-        <td>
-            @Html.ActionLink("Edit default wall", "WallSettings", "Profile")
-        </td>
-    </tr>
-
-</table>
-
-
-<li>@Html.ActionLink("Admin settings", "AdminPage", "Profile")</li>
-
+@if (Model.AdminRights == true)
+{
+    <div class="calendar-information-form">
+        <div class="calendar-content">
+            <h1>@Html.ActionLink("Go to admin settings", "AdminPage", "Profile")</h1>
+        </div>
+    </div>
+}

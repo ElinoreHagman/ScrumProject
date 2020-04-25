@@ -10,18 +10,34 @@ namespace ScrumProject.Controllers
 {
     public class ProfileController : Controller
     {
-        // GET: User
+
         [Authorize]
         public ActionResult Index()
         {
-
+            var user = User.Identity.GetUserId();
             var ctx = new BlogDbContext();
+            var profile = ctx.Profiles.FirstOrDefault(x => x.ProfileID == user);
+
             ViewBag.user = ctx.Users.ToList();
-            var viewModel = new ProfileIndexViewModel
+
+            return View(profile);
+        }
+
+        public ActionResult UpdateProfile(Profile model)
+        {
+            if (!ModelState.IsValid)
             {
-                Profiles = ctx.Profiles.ToList()
-            };
-            return View(viewModel);
+                return RedirectToAction("Index");
+            }
+            var user = User.Identity.GetUserId();
+            var ctx = new BlogDbContext();
+            var profile = ctx.Profiles.FirstOrDefault(x => x.ProfileID == user);
+            profile.Forename = model.Forename;
+            profile.Surname = model.Surname;
+            profile.Phonenumber = model.Phonenumber;
+            ctx.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         [Authorize]

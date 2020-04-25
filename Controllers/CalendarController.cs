@@ -119,6 +119,7 @@ namespace ScrumProject.Controllers
         {
             if (IsChecked == null)
             {
+                Session["error_invite"] = "Choose an option first";
                 return RedirectToAction("Index", "Calendar");
             }
 
@@ -134,7 +135,7 @@ namespace ScrumProject.Controllers
                 invite.ChosenDate = chosenDate;
                 invite.Accepted = true;
                 ctx.SaveChanges();
-                TempData["accepted"] = "Du har skickat datumförslag för mötet!";
+                TempData["accepted_invite"] = "You've sent a date suggestion for the meeting!";
 
                 var user = User.Identity.GetUserId();
                 var profile = ctx.Profiles.FirstOrDefault(x => x.ProfileID == user);
@@ -152,6 +153,8 @@ namespace ScrumProject.Controllers
                 var inviteDates = ctx.MeetingDateOptionsToInvite.Where(x => x.InviteID == inviteNumber).ToList();
                 ctx.MeetingDateOptionsToInvite.RemoveRange(inviteDates);
                 ctx.SaveChanges();
+                TempData["accepted_invite"] = "You declined the meeting!";
+
             }
 
             var allInvitesInMeetings = ctx.Invites.Where(x => x.MeetingID == meetingID).ToList();
@@ -236,18 +239,24 @@ namespace ScrumProject.Controllers
                 ctx.SaveChanges();
             }
 
-
+            TempData["accepted"] = "You've now sent invites for your new meeting";
             return RedirectToAction("Index", "Calendar");
         }
 
-        public ActionResult DecideMeeting (DateTime IsChecked, int meetingId)
+        public ActionResult DecideMeeting (DateTime? IsChecked, int meetingId)
         {
+            if (IsChecked == null)
+            {
+                Session["error_booking"] = "Choose an option first";
+                return RedirectToAction("Index", "Calendar");
+            }
 
             var ctx = new BlogDbContext();
             var meeting = ctx.Meetings.FirstOrDefault(x => x.MeetingID == meetingId);
             meeting.MeetingDateTime = IsChecked;
             ctx.SaveChanges();
 
+            TempData["accepted_booking"] = "You have now finished booking your meeting";
             return RedirectToAction("Index", "Calendar");
         }
 
