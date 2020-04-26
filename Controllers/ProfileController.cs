@@ -216,7 +216,6 @@ namespace ScrumProject.Controllers
             var blogDb = new BlogDbContext();
             var acceptUser = new User();
             acceptUser = blogDb.Users.FirstOrDefault(u => u.UserID == id);
-            //var currentUser = User.Identity.GetUserId();
             if (acceptUser.Approved == false)
             {
                 acceptUser.Approved = true;
