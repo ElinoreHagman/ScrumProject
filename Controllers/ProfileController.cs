@@ -61,9 +61,7 @@ namespace ScrumProject.Controllers
             var viewModel = new ProfileIndexViewModel
             {
                 Profiles = ctx.Profiles.Where(x => x.ProfileID != user).ToList()
-            };
-
-            
+            }; 
 
             return View(viewModel);
         }
@@ -200,7 +198,8 @@ namespace ScrumProject.Controllers
                 EditRights.AdminRights = false;
                 blogDb.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminPage");
+
         }
 
         [Authorize]
