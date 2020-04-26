@@ -15,13 +15,18 @@ namespace ScrumProject.Controllers
         [Authorize]
         public ActionResult FormalWall()
         {
-            ViewBag.loggedInUser = User.Identity.GetUserId();
-
+            var user = User.Identity.GetUserId();
+            ViewBag.loggedInUser = user;
             var blogDB = new BlogDbContext();
+            var loggedIn = blogDB.Profiles.FirstOrDefault(x => x.ProfileID == user);
+            ViewBag.isAdmin = loggedIn.AdminRights;
+
+            var blogPosts = blogDB.Posts.ToList();
+            blogPosts.Reverse();
             var viewModel = new PostIndexViewModel
             {
                 Profiles = blogDB.Profiles.ToList(),
-                Posts = blogDB.Posts.ToList(),
+                Posts = blogPosts,
                 Categories = blogDB.Categories.ToList(),
                 Comments = blogDB.Comments.ToList()
             };
@@ -37,11 +42,13 @@ namespace ScrumProject.Controllers
 
             if(dropdownMenu == "0")
             {
+                viewModel.Profiles = blogDB.Profiles.ToList();
                 viewModel.Posts = blogDB.Posts.ToList();
                 viewModel.Categories = blogDB.Categories.ToList();
                 viewModel.Comments = blogDB.Comments.ToList();
             } else
             {
+                viewModel.Profiles = blogDB.Profiles.ToList();
                 viewModel.Posts = blogDB.Posts.Where(p => p.Category.Name == dropdownMenu).ToList();
                 viewModel.Categories = blogDB.Categories.ToList();
                 viewModel.Comments = blogDB.Comments.Where(p => p.PostID == p.Comments.PostID).ToList();
@@ -53,14 +60,21 @@ namespace ScrumProject.Controllers
         [Authorize]
         public ActionResult InformalWall()
         {
-            ViewBag.loggedInUser = User.Identity.GetUserId();
-
+            var user = User.Identity.GetUserId();
+            ViewBag.loggedInUser = user;
             var blogDB = new BlogDbContext();
+            var loggedIn = blogDB.Profiles.FirstOrDefault(x => x.ProfileID == user);
+            ViewBag.isAdmin = loggedIn.AdminRights;
+
+            var blogPosts = blogDB.Posts.ToList();
+            blogPosts.Reverse();
+
             var viewModel = new PostIndexViewModel
             {
                 Profiles = blogDB.Profiles.ToList(),
-                Posts = blogDB.Posts.ToList(),
-                Categories = blogDB.Categories.ToList()
+                Posts = blogPosts,
+                Categories = blogDB.Categories.ToList(),
+                Comments = blogDB.Comments.ToList()
             };
             return View(viewModel);
         }

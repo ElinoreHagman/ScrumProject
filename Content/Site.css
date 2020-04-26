@@ -84,7 +84,7 @@ body {
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 350px;
 }
 
 .calendar-box {
@@ -198,6 +198,7 @@ textarea {
 
 .calendar-content {
     padding: 20px;
+    position: relative;
 }
 
 .flex-container {
@@ -302,4 +303,58 @@ textarea {
     height: 115px;
     border-radius: 5px;
     border-color: #bebebe;
+}
+
+.changeSettings td {
+    padding: 10px;
+}
+
+.changeSettings a {
+    color: #bb0000;
+}
+
+.changeSettings tr:nth-child(2n+1) {
+    background-color: #f7f7f7;
+}
+
+.calendar-content hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 1px solid rgba(99, 165, 222, 0.55);
+}
+
+.post-section {
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    border-top: 1px solid #c4c4c4;
+}
+
+.blog-content {
+    margin: 0 20px 10px 20px;
+}
+
+.blogPost {
+    background-color: white;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+}
+
+.blogPost p {
+    display: block;
+}
+
+.file-block {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
+    width: 160px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid rgba(99, 165, 222, 0.55);
+    margin: 7px 7px 0 0;
 }

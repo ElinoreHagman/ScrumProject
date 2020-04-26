@@ -5,29 +5,26 @@
 @using (Html.BeginForm("SelectCategory", "Profile", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <br />
 
-    <div class="jumbotron">
 
-        <div class="form-group">
 
-            @Html.LabelFor(model => model.ChosenCategory, htmlAttributes: new { @class = "control-label col-md-2" })
+    <select id="dropdownMenu" name="dropdownMenu" class="form-control" style="display: inline">
 
-            <div class="col-md-10">
-                <h2>Select a category </h2>
+        @foreach (var category in (ViewBag.categories as List<ScrumProject.Models.Category>))
+        {
+            <option value="@category.Name">@category.Name</option>
+        }
 
-                <select id="dropdownMenu" name="dropdownMenu" class="form-control" style="margin-bottom: 5px;">
-                    <option value="0">Choose category</option>
-                    @foreach (var category in (ViewBag.categories as List<ScrumProject.Models.Category>))
-                    {
-                        <option value="@category.Name">@category.Name</option>
-                    }
-                </select>
-                <input type="submit" value="Select" class="btn btn-xs btn-primary" />
-            </div>
+    </select>
 
-        </div>
-    </div>
-}
+    <input type="submit" value="Select" style="margin: 5px 0;" class="btn btn-primary" />
 
 }
+<div style="margin-top: 10px;">
+    @foreach (var category in (ViewBag.catNotifications as List<ScrumProject.Models.ChosenCategories>))
+    {
+        <h4>@category.Name</h4>
+    }
+</div>
+
+

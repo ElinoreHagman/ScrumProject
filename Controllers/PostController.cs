@@ -116,7 +116,16 @@ namespace ScrumProject.Models
             }
 
             ViewBag.EditStatus = "Successful registration";
-            return RedirectToAction("FormalWall", "Wall");
+
+            if (post.PublishedWall.Equals("Formell"))
+            {
+                return RedirectToAction("FormalWall", "Wall");
+            }
+            else
+            {
+                return RedirectToAction("InformalWall", "Wall");
+
+            }
 
         }
 

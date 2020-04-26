@@ -1,12 +1,12 @@
 ﻿@using ScrumProject.Models
 
-<table>
+<table class="changeSettings">
+
     @foreach (var user in (ViewBag.user as List<ScrumProject.Models.User>))
     {
         if(user.Approved == false) { 
         <tr>
-            <td style="visibility:collapse;">@user.UserID</td>
-            <td>@user.Email</td>
+            <td><strong>@user.Email</strong></td>
             <td>@user.Approved</td>
 
             <td>

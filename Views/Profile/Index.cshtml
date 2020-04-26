@@ -25,11 +25,43 @@
             <h3>Phone number</h3>
             @Html.EditorFor(model => model.Phonenumber, new { htmlAttributes = new { type = "number", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Phonenumber, "", new { @class = "text-danger" })
+
             <br />
 
+            if (Model.AdminRights == true)
+            {
+                <h3>You're an administrator</h3>
+            }
+            else
+            {
+                <h3>You're not an administrator</h3>
+            }
+
+            <br />
             <input type="submit" value="Update" class="btn btn-info" />
         }
 
+    </div>
+</div>
+
+
+<div class="calendar-information-form">
+    <div class="calendar-content">
+        <h1>@Html.ActionLink("Show members on this site", "ShowOthersProfile", "Profile")</h1>
+    </div>
+</div>
+
+<div class="calendar-information-form">
+    <div class="calendar-content">
+        <h2 style="margin-top: 0;">Change wall preferences</h2>
+        @Html.Partial("WallSettings")
+    </div>
+</div>
+
+<div class="calendar-information-form">
+    <div class="calendar-content">
+        <h2 style="margin-top: 0;">Select categories to get email notifications on</h2>
+        @Html.Partial("SelectCategory", new ProfileIndexViewModel())
     </div>
 </div>
 
@@ -41,3 +73,5 @@
         </div>
     </div>
 }
+
+

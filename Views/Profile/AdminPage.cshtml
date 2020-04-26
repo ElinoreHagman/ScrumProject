@@ -1,32 +1,19 @@
 ﻿@using ScrumProject.Models
 @model ProfileIndexViewModel
 
-<h2>Change default wall</h2>
-<table>
-    <tr>
-        <td>
-            @Html.ActionLink("Edit default wall", "WallSettings", "Profile")
-        </td>
-    </tr>
+    <h2>&larr; @Html.ActionLink("Back to profile", "Index", "Profile")</h2>
 
-</table>
 
-<div id="AdminAccept" class="bg-default" style="padding: 1px 10px 20px 15px; margin: 10px 0px;">
-    <br /><h2><b>Accept new registration request</b></h2>
-    @Html.Partial("AdminAccept")
+<div class="calendar-information-form ">
+    <div class="calendar-content">
+        <h2 style="margin-top: 0;">Set administrator rights for others</h2>
+        @Html.Partial("AdminSettings")
+    </div>
 </div>
 
-<hr />
-
-
-<h1><b>Admin Page</b></h1>
-
-<div id="AdminSettings" class="bg-default" style="padding: 1px 10px 20px 15px; margin: 10px 0px;">
-    <br /><h2><b>Set admin rights</b></h2>
-    @Html.Partial("AdminSettings")
-</div>
-
-<div id="AdminAccept" class="bg-default" style="padding: 1px 10px 20px 15px; margin: 10px 0px;">
-    <br /><h2><b>Accept new registration request</b></h2>
-    @Html.Partial("AdminAccept")
+<div class="calendar-information-form ">
+    <div class="calendar-content">
+        <h2 style="margin-top: 0;">Accept new registration requests</h2>
+        @Html.Partial("AdminAccept")
+    </div>
 </div>

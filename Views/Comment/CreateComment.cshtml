@@ -4,50 +4,36 @@
     ViewBag.Title = "CreateComment";
 }
 
-<h2>CreateComment</h2>
+    <div class="calendar-information-form">
+
+        <div class="calendar-content">
+
+            @using (Html.BeginForm("CreateComment", "Comment", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <h2 style="margin-top: 0;">Comment</h2>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.PostID)
 
 
-@using (Html.BeginForm("CreateComment", "Comment", FormMethod.Post)) 
-{
-    @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Comment</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.PostID)
 
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
+                <input type="submit" value="Create" class="btn btn-success" />
+            
+            }
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.ProfileID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ProfileID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProfileID, "", new { @class = "text-danger" })
             </div>
-        </div>*@
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
         </div>
-    </div>
-</div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }

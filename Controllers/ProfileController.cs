@@ -17,8 +17,11 @@ namespace ScrumProject.Controllers
             var user = User.Identity.GetUserId();
             var ctx = new BlogDbContext();
             var profile = ctx.Profiles.FirstOrDefault(x => x.ProfileID == user);
-
+            var mySecondList = ctx.Categories.ToList();
+            ViewBag.categories = mySecondList;
             ViewBag.user = ctx.Users.ToList();
+
+            ViewBag.catNotifications = ctx.SelectedCategories.Where(x=> x.ProfileID == user).ToList();
 
             return View(profile);
         }
@@ -44,11 +47,22 @@ namespace ScrumProject.Controllers
         public ActionResult AdminPage()
         {
             var ctx = new BlogDbContext();
+            var user = User.Identity.GetUserId();
             ViewBag.user = ctx.Users.ToList();
             var viewModel = new ProfileIndexViewModel
             {
-                Profiles = ctx.Profiles.ToList()
+                Profiles = ctx.Profiles.Where(x => x.ProfileID != user).ToList()
             };
+
+            var settingsExist = ctx.Settings.FirstOrDefault(x => x.SettingsID == user);
+
+            ViewBag.chosenWall = "None";
+
+            if (settingsExist != null)
+            {
+                ViewBag.chosenWall = settingsExist.ChosenWall;
+            }
+
             return View(viewModel);
         }
 
@@ -81,8 +95,6 @@ namespace ScrumProject.Controllers
             {
                 Profiles = ctx.Profiles.ToList()
             };
-            ////ctx.Profiles.Add(model);
-            //ctx.SaveChanges();
 
             return Index();
         }
@@ -114,6 +126,7 @@ namespace ScrumProject.Controllers
             return RedirectToAction("ShowProfile", "Profile");
         }
 
+        [Authorize]
         public ActionResult SelectCategory()
         {
             var ctx = new BlogDbContext();
@@ -139,7 +152,7 @@ namespace ScrumProject.Controllers
             ctx.SelectedCategories.Add(chosenCategories);
             ctx.SaveChanges();
 
-            return RedirectToAction("ShowProfile", "Profile");
+            return RedirectToAction("Index", "Profile");
         }
 
         [HttpGet]
@@ -154,23 +167,27 @@ namespace ScrumProject.Controllers
             return View(viewModel);
         }
 
+        [Authorize]
         public ActionResult ShowOthersProfile()
         {
             var ctx = new BlogDbContext();
+            var user = User.Identity.GetUserId();
             var viewModel = new ProfileIndexViewModel
             {
-                Profiles = ctx.Profiles.ToList(),
+                Profiles = ctx.Profiles.Where(x => x.ProfileID != user).ToList(),
             };
 
             return View(viewModel);
         }
 
+        [Authorize]
         public ActionResult ChangeSettings(string id)
         {
             var blogDb = new BlogDbContext();
+
             var EditRights = new Profile();
             EditRights = blogDb.Profiles.FirstOrDefault(u => u.ProfileID == id);
-            //var currentUser = User.Identity.GetUserId();
+
             if (EditRights.AdminRights == false)
             {
                 EditRights.AdminRights = true;
@@ -184,7 +201,7 @@ namespace ScrumProject.Controllers
             return RedirectToAction("Index");
         }
 
-
+        [Authorize]
         public ActionResult AdminAccept()
         {
             var ctx = new BlogDbContext();
@@ -209,7 +226,7 @@ namespace ScrumProject.Controllers
                 acceptUser.Approved = false;
                 blogDb.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminPage");
         }
 
         public ActionResult DefaultWallSettings(string IsChecked)
@@ -231,22 +248,12 @@ namespace ScrumProject.Controllers
             }
             ctx.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminPage");
         }
 
+        [Authorize]
         public ActionResult WallSettings()
         {
-
-            var ctx = new BlogDbContext();
-            var user = User.Identity.GetUserId();
-            var settingsExist = ctx.Settings.FirstOrDefault(x => x.SettingsID == user);
-
-            ViewBag.chosenWall = "None";
-
-            if (settingsExist != null)
-            {
-                ViewBag.chosenWall = settingsExist.ChosenWall;
-            }
 
             return View();
         }
