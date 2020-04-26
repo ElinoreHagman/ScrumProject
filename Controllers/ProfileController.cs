@@ -23,6 +23,15 @@ namespace ScrumProject.Controllers
 
             ViewBag.catNotifications = ctx.SelectedCategories.Where(x=> x.ProfileID == user).ToList();
 
+            var settingsExist = ctx.Settings.FirstOrDefault(x => x.SettingsID == user);
+
+            ViewBag.chosenWall = "None";
+
+            if (settingsExist != null)
+            {
+                ViewBag.chosenWall = settingsExist.ChosenWall;
+
+            }
             return View(profile);
         }
 
@@ -54,14 +63,7 @@ namespace ScrumProject.Controllers
                 Profiles = ctx.Profiles.Where(x => x.ProfileID != user).ToList()
             };
 
-            var settingsExist = ctx.Settings.FirstOrDefault(x => x.SettingsID == user);
-
-            ViewBag.chosenWall = "None";
-
-            if (settingsExist != null)
-            {
-                ViewBag.chosenWall = settingsExist.ChosenWall;
-            }
+            
 
             return View(viewModel);
         }
@@ -248,7 +250,7 @@ namespace ScrumProject.Controllers
             }
             ctx.SaveChanges();
 
-            return RedirectToAction("AdminPage");
+            return RedirectToAction("Index");
         }
 
         [Authorize]
