@@ -38,12 +38,17 @@ namespace ScrumProject.Controllers
         {
 
             var blogDB = new BlogDbContext();
+            var user = User.Identity.GetUserId();
             var viewModel = new PostIndexViewModel();
+            var blogPosts = blogDB.Posts.ToList();
+            blogPosts.Reverse();
+            var loggedIn = blogDB.Profiles.FirstOrDefault(x => x.ProfileID == user);
+            ViewBag.isAdmin = loggedIn.AdminRights;
 
-            if(dropdownMenu == "0")
+            if (dropdownMenu == "0")
             {
                 viewModel.Profiles = blogDB.Profiles.ToList();
-                viewModel.Posts = blogDB.Posts.ToList();
+                viewModel.Posts = blogPosts;
                 viewModel.Categories = blogDB.Categories.ToList();
                 viewModel.Comments = blogDB.Comments.ToList();
             } else
