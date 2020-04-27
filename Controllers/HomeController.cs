@@ -21,6 +21,7 @@ namespace ScrumProject.Controllers
             var ctx = new BlogDbContext();
             var Profiles = ctx.Profiles.ToList();
             var oldMessages = ctx.Messages.OrderByDescending(x=> x.Date).Where(x=> x.Date > dateNow).Take(5).ToList();
+            oldMessages.Reverse();
             ViewBag.OldMessages = oldMessages;
 
             return View("ChatView");
