@@ -1,7 +1,7 @@
 # ScrumProject
  Group project VT2020
 
-An information system for Örebro University where teachers can share pictures, files and discuss topics related to their work or private lives. There is a notification system in place where teachers get an email whenever someone posts something in a category they've chosen to get notifications on. The teachers can also book meetings and they show up as a public calendar on the website.
+An information system for Örebro University where teachers can share pictures, files and discuss topics related to their work or private lives. There is a notification system in place where teachers get an email whenever someone posts something in a category they've chosen to get notifications on. The teachers can also book meetings and they show up as a public calendar on the website. There is also a chat section where teachers can chat with each other on a public chat wall.
 
 # Regarding the code
 This project was focused on the techniques Scrum and Extreme programming within the group of 8 students, and not so much the actual project. Therefore there are quite a bit of unfinished/nonexistent functions, not optimal techniques and lacking design etc.
