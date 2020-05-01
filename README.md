@@ -7,8 +7,8 @@ An information system for Örebro University where teachers can share pictures, 
 This project was focused on the techniques Scrum and Extreme programming within the group of 8 students, and not so much the actual project. Therefore there are quite a bit of unfinished/nonexistent functions, not optimal techniques and lacking design etc.
 
 # Things to fix/correct
-*Coorect validation for all inputs (phone number have almost none)\
-*Move the section where you write a new post to respective wall instead of having it on a own detached page.\
-*Add so you can have a profile picture and a introduction text on your own profile page.\
-*Make all teachers' names (ex. in the calendar and blog posts) clickable and linked to their own profile page.\
-*Replace the calendar with a more interactive calendar.\
+*Coorect validation for all inputs (phone number have almost none)*\
+*Move the section where you write a new post to respective wall instead of having it on a own detached page.*\
+*Add so you can have a profile picture and a introduction text on your own profile page.*\
+*Make all teachers' names (ex. in the calendar and blog posts) clickable and linked to their own profile page.*\
+*Replace the calendar with a more interactive calendar.*
